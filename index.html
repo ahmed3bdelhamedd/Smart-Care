@@ -1,802 +1,95 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Care | العقل الذكي للمؤسسات والقطاع الطبي</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Cairo for sleek Arabic typography) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <!-- Tailwind Custom Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        darkBg: '#070b19',
-                        darkCard: '#0f172a',
-                        darkCardHover: '#1e293b',
-                        neonCyan: '#06b6d4',
-                        neonEmerald: '#10b981',
-                        neonPurple: '#8b5cf6',
-                        neonBlue: '#3b82f6',
-                        executiveGold: '#f59e0b',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #070b19;
-            color: #f8fafc;
-            overflow-x: hidden;
-        }
-        /* Custom Glowing & Glassmorphism Effects */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-panel-glow {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
-        }
-        .glow-text-cyan {
-            text-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
-        }
-        .glow-text-emerald {
-            text-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
-        }
-        .glow-box-purple {
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.25);
-        }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #070b19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #06b6d4;
-        }
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-        .animate-pulse-glow {
-            animation: pulseGlow 4s infinite ease-in-out;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Care | العقل الذكي للمؤسسات والقطاع الطبي</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-darkBg text-slate-100 min-h-screen flex flex-col selection:bg-cyan-500 selection:text-white">
+<body>
 
-    <!-- Top Header & Navigation -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
-                    <i class="fa-solid fa-brain text-white text-xl animate-pulse"></i>
-                </div>
-                <div>
-                    <span class="text-2xl font-black bg-gradient-to-r from-cyan-400 via-teal-300 to-purple-400 bg-clip-text text-transparent">Smart Care</span>
-                    <span class="block text-[10px] tracking-widest text-cyan-400 font-semibold uppercase">AI Enterprise & Healthcare ERP</span>
-                </div>
-            </div>
+  <!-- Navbar -->
+  <nav class="smart-navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="logo-icon">🧠</div>
+      <h1>Smart Care</h1>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">الرئيسية (CEO)</a></li>
+      <li><a href="healthcare.html">القطاع الطبي</a></li>
+      <li><a href="risk-engine.html">محرك المخاطر والمحاكاة</a></li>
+      <li><a href="finance.html">المالية</a></li>
+      <li><a href="hr.html">الموارد البشرية</a></li>
+      <li><a href="logistics.html">اللوجستيات</a></li>
+      <li><a href="real-estate.html">العقارات</a></li>
+      <li><a href="education.html">التعليم</a></li>
+      <li><a href="maintenance.html">الصيانة</a></li>
+    </ul>
+  </nav>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 space-x-reverse text-sm font-semibold text-slate-300">
-                <a href="#ai-core" class="hover:text-cyan-400 transition-colors">العقل الذكي</a>
-                <a href="#specialized-ai" class="hover:text-cyan-400 transition-colors">الذكاء التخصصي</a>
-                <a href="#healthcare-erp" class="hover:text-cyan-400 transition-colors">القطاع الطبي ERP</a>
-                <a href="#enterprise-modules" class="hover:text-cyan-400 transition-colors">القطاعات المدعومة</a>
-                <a href="#ceo-simulator" class="hover:text-cyan-400 transition-colors">محاكي القرار</a>
-            </nav>
-
-            <!-- Action Buttons -->
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <button onclick="openConsultationModal()" class="hidden sm:inline-flex items-center px-4 py-2 rounded-xl text-sm font-bold text-cyan-400 bg-cyan-950/50 border border-cyan-500/30 hover:bg-cyan-900/50 hover:border-cyan-400 transition-all shadow-sm">
-                    <i class="fa-solid fa-headset ml-2"></i> استشارة قيادية
-                </button>
-                <button onclick="openConsultationModal()" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 hover:opacity-95 shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
-                    طلب عرض تجريبي <i class="fa-solid fa-arrow-left mr-2"></i>
-                </button>
-            </div>
+  <!-- Content -->
+  <div class="page-container animate-fade">
+    
+    <!-- Hero Banner -->
+    <div class="glass-card" style="margin-bottom: 30px; background: linear-gradient(135deg, rgba(11, 19, 41, 0.9), rgba(30, 41, 59, 0.8));">
+      <div style="max-width: 800px;">
+        <span class="badge badge-success" style="margin-bottom: 15px;">⚡ AI Core Engine نشط ومستقر</span>
+        <h2 style="font-size: 36px; margin-bottom: 15px; font-weight: 900;">العقل الذكي للمؤسسات والقطاع الطبي</h2>
+        <p style="color: var(--text-muted); font-size: 16px; line-height: 1.8; margin-bottom: 25px;">
+          ليس مجرد نظام ERP تقليدي، بل المنظومة المعرفية الأولى التي تربط الأقسام ببعضها، تتنبأ بالمخاطر والخسائر قبل وقوعها بأسابيع، وتقدم قرارات فورية وحلولاً جاهزة للقيادات والـ CEO.
+        </p>
+        <div style="display: flex; gap: 15px;">
+          <a href="risk-engine.html" class="btn-primary">تشغيل محرك المخاطر التنبؤي 🚀</a>
+          <a href="healthcare.html" style="background: transparent; color: var(--accent-cyan); border: 1px solid var(--border-color);" class="btn-primary">استعراض القطاع الطبي</a>
         </div>
-    </header>
+      </div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="relative pt-20 pb-28 overflow-hidden">
-        <!-- Background Glowing Orb Elements -->
-        <div class="absolute top-1/4 right-1/2 translate-x-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
-        <div class="absolute bottom-10 left-10 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <!-- Stats Grid -->
+    <div class="grid-4" style="margin-bottom: 30px;">
+      <div class="glass-card">
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">مؤشر الصحة المالية العام</p>
+        <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-emerald);">94.8%</h3>
+        <span style="font-size: 12px; color: var(--accent-emerald);">↑ 4.2% عن الشهر السابق</span>
+      </div>
+      <div class="glass-card">
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">التنبؤات المبكرة النشطة</p>
+        <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-cyan);">14 تنبيه</h3>
+        <span style="font-size: 12px; color: var(--accent-cyan);">تم معالجة 11 بنجاح</span>
+      </div>
+      <div class="glass-card">
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">إجمالي الأقسام المربوطة</p>
+        <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-purple);">8 قطاعات</h3>
+        <span style="font-size: 12px; color: var(--text-muted);">تزامن لحظي للبيانات</span>
+      </div>
+      <div class="glass-card">
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">توفير الخسائر المتوقعة</p>
+        <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-amber);">$1.2M</h3>
+        <span style="font-size: 12px; color: var(--accent-amber);">بفضل التدخل الاستباقي للـ AI</span>
+      </div>
+    </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-4xl mx-auto">
-                <!-- Badge -->
-                <div class="inline-flex items-center space-x-2 space-x-reverse px-4 py-1.5 rounded-full glass-panel-glow border border-cyan-500/40 text-cyan-300 text-xs sm:text-sm font-bold mb-8 shadow-inner">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                    <span>النظام الإداري والطبي الأول المدعوم بالذكاء الاصطناعي التنبؤي المتصالب</span>
-                </div>
+    <!-- Cross-Department Risk Alert Box -->
+    <div class="glass-card" style="border-color: rgba(244, 63, 94, 0.4); margin-bottom: 30px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <h3 style="display: flex; align-items: center; gap: 10px; color: var(--accent-rose);">
+          🚨 تنبيه عاجل للـ CEO (تم اكتشافه عبر الربط المتصالب)
+        </h3>
+        <span class="badge badge-danger">خطورة عالية جداً</span>
+      </div>
+      <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+        رصد النظام تأخراً محتملاً للمورد (شركة الخليج للمعدات) بنسبة 14 يومًا + زيادة طلبات العناية المركزة بنسبة 35% + عطل وشيك في مولد الطاقة الرئيسي. يتوقع النظام خسارة مالية بقيمة <strong>$180,000</strong> خلال 3 أسابيع إذا لم يتم التدخل.
+      </p>
+      <div style="background: rgba(15, 23, 42, 0.9); padding: 15px; border-radius: 10px; border-right: 4px solid var(--accent-emerald);">
+        <strong style="color: var(--accent-emerald); display: block; margin-bottom: 5px;">خطة الحل الجاهزة المقترحة من AI Core:</strong>
+        1. تفعيل المورد البديل (مورد الشرق الأوسط) فوراً لتوفير قطع الغيار خلال 48 ساعة.<br>
+        2. جدولة الصيانة الوقائية لمولد الطاقة في فترة ذروة أقل انشغالاً.<br>
+        3. إعادة توجيه 15% من الحالات غير العاجلة للفرع الثاني لتقليل الضغط.
+      </div>
+    </div>
 
-                <!-- Main Headline -->
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight mb-8">
-                    Smart Care: <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-purple-400 bg-clip-text text-transparent glow-text-cyan">العقل الذكي</span> للمؤسسات والقطاع الطبي
-                </h1>
+  </div>
 
-                <!-- Subtitle -->
-                <p class="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed mb-10 max-w-3xl mx-auto">
-                    ليس مجرد نظام ERP تقليدي؛ بل هو منظومة اتخاذ القرار المستقل. يربط كافة أقسام المؤسسة ببعضها، يتنبأ بالمخاطر والخسائر قبل وقوعها بأسابيع، ويقدم حلولاً جاهزة للـ CEO والقيادات العليا.
-                </p>
-
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
-                    <a href="#ai-core" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-xl shadow-cyan-500/30 transition-all transform hover:-translate-y-1 text-center">
-                        <i class="fa-solid fa-microchip ml-2"></i> اكتشف العقل الذكي
-                    </a>
-                    <a href="#ceo-simulator" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-cyan-300 glass-panel border border-cyan-500/30 hover:bg-cyan-950/40 transition-all text-center">
-                        <i class="fa-solid fa-chart-line ml-2"></i> جرب محاكاة السيناريوهات
-                    </a>
-                    <button onclick="openConsultationModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-slate-200 glass-panel border border-slate-700 hover:border-slate-500 transition-all text-center">
-                        <i class="fa-solid fa-shield-halved ml-2"></i> عرض تجريبي للقيادات
-                    </button>
-                </div>
-
-                <!-- Live Ticker Stats Card -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-                    <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center relative overflow-hidden group hover:border-cyan-500/50 transition-all">
-                        <div class="text-slate-400 text-xs font-semibold mb-1">مؤشر الصحة المالية العام</div>
-                        <div class="text-3xl font-black text-emerald-400 glow-text-emerald" id="health-score-ticker">94.8%</div>
-                        <div class="text-[11px] text-emerald-400/80 mt-1"><i class="fa-solid fa-arrow-trend-up ml-1"></i> أعلى بنسبة 14% عن المعيار</div>
-                    </div>
-                    <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center relative overflow-hidden group hover:border-cyan-500/50 transition-all">
-                        <div class="text-slate-400 text-xs font-semibold mb-1">الخسائر المتوقعة التي تم منعها</div>
-                        <div class="text-3xl font-black text-cyan-400 glow-text-cyan" id="saved-losses">$2.41M</div>
-                        <div class="text-[11px] text-cyan-400/80 mt-1"><i class="fa-solid fa-shield ml-1"></i> رصد وقائي فوري</div>
-                    </div>
-                    <div class="glass-panel p-5 rounded-2xl border border-slate-800 text-center relative overflow-hidden group hover:border-cyan-500/50 transition-all">
-                        <div class="text-slate-400 text-xs font-semibold mb-1">دقة التنبؤ المتصالب</div>
-                        <div class="text-3xl font-black text-purple-400">99.2%</div>
-                        <div class="text-[11px] text-purple-300/80 mt-1"><i class="fa-solid fa-bolt ml-1"></i> عبر 6 أقسام تشغيلية</div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Core Engine Section -->
-    <section id="ai-core" class="py-24 relative bg-slate-950/50 border-t border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-cyan-400 text-sm font-bold uppercase tracking-wider mb-2 block">النواة المعرفية المتطورة</span>
-                <h2 class="text-3xl sm:text-5xl font-black mb-6">العقل الذكي (AI Core Engine)</h2>
-                <p class="text-slate-300 text-lg">ما يميز Smart Care عن أي نظام ERP تقليدي هو الربط الحيوي التنبؤي ومحاكاة السيناريوهات قبل وقوع الأزمات.</p>
-            </div>
-
-            <!-- Interactive AI Core Tabs / Widgets -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                
-                <!-- Tab Selector Column -->
-                <div class="space-y-4">
-                    <button onclick="switchAiTab('risk')" id="btn-tab-risk" class="w-full text-right p-5 rounded-2xl glass-panel border border-cyan-500 transition-all flex items-center justify-between group">
-                        <div class="flex items-center space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-network-wired"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white group-hover:text-cyan-300 transition-colors">الربط التنبؤي المتصالب</h3>
-                                <p class="text-xs text-slate-400 mt-0.5">Cross-Department Risk Engine</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-chevron-left text-cyan-400"></i>
-                    </button>
-
-                    <button onclick="switchAiTab('simulation')" id="btn-tab-simulation" class="w-full text-right p-5 rounded-2xl glass-panel border border-slate-800 hover:border-slate-700 transition-all flex items-center justify-between group">
-                        <div class="flex items-center space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-vr-cardboard"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white group-hover:text-purple-300 transition-colors">محاكاة السيناريوهات</h3>
-                                <p class="text-xs text-slate-400 mt-0.5">Scenario Simulation (What-If)</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-chevron-left text-slate-600 group-hover:text-purple-400"></i>
-                    </button>
-
-                    <button onclick="switchAiTab('finance')" id="btn-tab-finance" class="w-full text-right p-5 rounded-2xl glass-panel border border-slate-800 hover:border-slate-700 transition-all flex items-center justify-between group">
-                        <div class="flex items-center space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-chart-pie"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-white group-hover:text-emerald-300 transition-colors">مؤشر الصحة المالية</h3>
-                                <p class="text-xs text-slate-400 mt-0.5">Deloitte & KPMG Standard</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-chevron-left text-slate-600 group-hover:text-emerald-400"></i>
-                    </button>
-                </div>
-
-                <!-- Interactive Display Container -->
-                <div class="lg:col-span-2 glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 relative min-h-[460px] flex flex-col justify-between">
-                    
-                    <!-- Content Panel 1: Risk Engine Live Demo Widget -->
-                    <div id="panel-risk" class="space-y-6">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-cyan-400">محاكي المخاطر التنبؤية المتصالبة</h3>
-                                <p class="text-xs text-slate-400 mt-1">اختر عوامل الإجهاد المؤسسي لاختبار استجابة العقل الذكي الفورية:</p>
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 text-xs font-bold border border-cyan-500/30">نشط الآن</span>
-                        </div>
-
-                        <!-- Checkbox Triggers -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <label class="cursor-pointer glass-panel p-3.5 rounded-xl border border-slate-800 hover:border-cyan-500/50 flex items-center space-x-3 space-x-reverse transition-all">
-                                <input type="checkbox" id="risk-1" onchange="runRiskSimulation()" checked class="w-4 h-4 rounded text-cyan-500 focus:ring-cyan-400 bg-slate-900 border-slate-700">
-                                <span class="text-sm font-semibold text-slate-200">تأخر المورد الرئيسي</span>
-                            </label>
-                            <label class="cursor-pointer glass-panel p-3.5 rounded-xl border border-slate-800 hover:border-cyan-500/50 flex items-center space-x-3 space-x-reverse transition-all">
-                                <input type="checkbox" id="risk-2" onchange="runRiskSimulation()" checked class="w-4 h-4 rounded text-cyan-500 focus:ring-cyan-400 bg-slate-900 border-slate-700">
-                                <span class="text-sm font-semibold text-slate-200">عطل مفاجئ في ماكينة خط الإنتاج</span>
-                            </label>
-                            <label class="cursor-pointer glass-panel p-3.5 rounded-xl border border-slate-800 hover:border-cyan-500/50 flex items-center space-x-3 space-x-reverse transition-all">
-                                <input type="checkbox" id="risk-3" onchange="runRiskSimulation()" class="w-4 h-4 rounded text-cyan-500 focus:ring-cyan-400 bg-slate-900 border-slate-700">
-                                <span class="text-sm font-semibold text-slate-200">زيادة الطلبات المفاجئة بنسبة 40%</span>
-                            </label>
-                        </div>
-
-                        <!-- AI Live Output Box -->
-                        <div class="p-5 rounded-2xl bg-slate-900/90 border border-cyan-500/30 space-y-3">
-                            <div class="flex items-center justify-between text-xs text-slate-400">
-                                <span class="text-cyan-400 font-bold"><i class="fa-solid fa-robot ml-1"></i> تقرير التنبؤ الفوري للـ CEO:</span>
-                                <span id="risk-timestamp">تم التحديث منذ ثوانٍ</span>
-                            </div>
-                            <div id="risk-output-text" class="text-sm text-slate-200 leading-relaxed font-medium">
-                                النظام يتوقع خسارة مالية قدرها <span class="text-red-400 font-bold">$142,000</span> خلال 18 يوماً نتيجة تداخل تأخر التوريد مع تعطل خط الإنتاج. تم إصدار خطة طوارئ مقترحة تتضمن تحويل طلبات التوريد لمورد بديل وتفعيل الصيانة الوقائية السريعة.
-                            </div>
-                            <div class="pt-2 flex items-center justify-between border-t border-slate-800">
-                                <span class="text-xs text-slate-400">إجراء مقترح تلقائياً:</span>
-                                <button onclick="alertCEOAction()" class="px-4 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition-all shadow-sm">
-                                    <i class="fa-solid fa-bolt ml-1"></i> اعتماد خطة الحل الفورية
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Panel 2: Scenario Simulation Tool -->
-                    <div id="panel-simulation" class="space-y-6 hidden">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-purple-400">محاكاة "ماذا لو؟" (What-if Analysis)</h3>
-                                <p class="text-xs text-slate-400 mt-1">حرك المتغيرات لتقدير التأثير المالي والتشغيلي المتوقع فوراً:</p>
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-purple-950 text-purple-300 text-xs font-bold border border-purple-500/30">وضع المحاكاة</span>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between text-sm mb-1 font-semibold">
-                                    <span class="text-slate-300">نسبة زيادة أسعار المواد الخام:</span>
-                                    <span id="slider-val-1" class="text-purple-400 font-bold">15%</span>
-                                </div>
-                                <input type="range" min="0" max="50" value="15" oninput="updateSimulation()" id="sim-slider-1" class="w-full accent-purple-500 bg-slate-800 h-2 rounded-lg cursor-pointer">
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-sm mb-1 font-semibold">
-                                    <span class="text-slate-300">تخفيض القوى العاملة الإدارية:</span>
-                                    <span id="slider-val-2" class="text-purple-400 font-bold">10%</span>
-                                </div>
-                                <input type="range" min="0" max="30" value="10" oninput="updateSimulation()" id="sim-slider-2" class="w-full accent-purple-500 bg-slate-800 h-2 rounded-lg cursor-pointer">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4 pt-2">
-                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
-                                <div class="text-xs text-slate-400 mb-1">صافي الأرباح المتوقع</div>
-                                <div id="sim-res-profit" class="text-xl font-black text-emerald-400">+ $1.85M</div>
-                            </div>
-                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
-                                <div class="text-xs text-slate-400 mb-1">مؤشر المخاطر التراكمي</div>
-                                <div id="sim-res-risk" class="text-xl font-black text-amber-400">منخفض (12%)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Panel 3: Financial Health Score -->
-                    <div id="panel-finance" class="space-y-6 hidden">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-emerald-400">تقارير الصحة المالية (Deloitte & KPMG Standard)</h3>
-                                <p class="text-xs text-slate-400 mt-1">تدقيق مالي حيوي يعتمد على الذكاء الاصطناعي لرصد التدفقات:</p>
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-bold border border-emerald-500/30">معتمد دولياً</span>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-                                <div class="text-xs text-slate-400">السيولة النقدية الحرة</div>
-                                <div class="text-lg font-bold text-emerald-400 mt-1">$5.8 مليون</div>
-                                <div class="text-[10px] text-slate-400 mt-1">كفاية تشغيلية لمدة 9.4 أشهر</div>
-                            </div>
-                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-                                <div class="text-xs text-slate-400">كفاءة رأس المال العامل</div>
-                                <div class="text-lg font-bold text-cyan-400 mt-1">94.2%</div>
-                                <div class="text-[10px] text-slate-400 mt-1">تحسن بنسبة +6.1% هذا الربع</div>
-                            </div>
-                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-                                <div class="text-xs text-slate-400">معامل الهدر المالي</div>
-                                <div class="text-lg font-bold text-purple-400 mt-1">0.8%</div>
-                                <div class="text-[10px] text-slate-400 mt-1">أدنى بنسبة 80% من متوسط القطاع</div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 text-xs text-slate-300 leading-relaxed">
-                            <i class="fa-solid fa-circle-info text-cyan-400 ml-1"></i> يتم تحديث هذه المؤشرات لحظياً بناءً على تحليل فواتير المشتريات، حركة المخزون، وتحصيلات العملاء دون أي تدخل بشري.
-                        </div>
-                    </div>
-
-                    <!-- Card Footer info -->
-                    <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
-                        <span><i class="fa-solid fa-shield-check text-cyan-400 ml-1"></i> مؤمن بالكامل بتشفير عسكري AES-256</span>
-                        <span class="text-cyan-400 font-bold">Smart Care AI Engine v4.2</span>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Specialized AI Modules Section -->
-    <section id="specialized-ai" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-purple-400 text-sm font-bold uppercase tracking-wider mb-2 block">دقة التخصص الوظيفي</span>
-                <h2 class="text-3xl sm:text-5xl font-black mb-6">الذكاء الاصطناعي التخصصي</h2>
-                <p class="text-slate-300 text-lg">خوارزميات ذكاء اصطناعي مُدربة خصيصاً على معالجة التحديات الأكثر تعقيداً في التوظيف، الصيانة، والموارد البشرية.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Module 1: HR Candidate Ranking -->
-                <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-cyan-500/50 transition-all group flex flex-col justify-between">
-                    <div>
-                        <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-users-viewfinder"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-white">ترتيب المتقدمين تلقائياً (Candidate Ranking)</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                            يحلل آلاف السير الذاتية، يقيم المهارات السلوكية والتقنية بدقة، ويرتب أفضل الكفاءات المتوافقة مع ثقافة الشركة في ثوانٍ معدودة دون تحيز بشري.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-cyan-400">
-                        <span><i class="fa-solid fa-bolt ml-1"></i> توفير 85% من وقت الفلترة</span>
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </div>
-                </div>
-
-                <!-- Module 2: Predictive Maintenance -->
-                <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-emerald-500/50 transition-all group flex flex-col justify-between">
-                    <div>
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-screwdriver-wrench"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-white">التنبؤ بأعطال المعدات (Predictive Maintenance)</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                            يراقب الاهتزازات، درجات الحرارة، وساعات التشغيل للآلات والمعدات الطبية والصناعية، ويتوقع الأعطال قبل حدوثها لتجنب التوقفات المكلفة.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-emerald-400">
-                        <span><i class="fa-solid fa-shield ml-1"></i> منع 98% من الأعطال المفاجئة</span>
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </div>
-                </div>
-
-                <!-- Module 3: Employee Retention -->
-                <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-purple-500/50 transition-all group flex flex-col justify-between">
-                    <div>
-                        <div class="w-14 h-14 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-user-shield"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-white">التنبؤ باستقالة الموظفين (Retention AI)</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                            يحدد مؤشرات التراجع الوظيفي والاحتراق المهني للموظفين الأكثر عرضة للمغادرة، ويقترح حزم تحفيزية وتدخلات مبكرة للاحتفاظ بالكفاءات النادرة.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-purple-400">
-                        <span><i class="fa-solid fa-heart-pulse ml-1"></i> زيادة استقرار الكوادر بنسبة 35%</span>
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Smart Healthcare ERP Section (Dual Experience) -->
-    <section id="healthcare-erp" class="py-24 relative bg-slate-950/70 border-t border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="text-cyan-400 text-sm font-bold uppercase tracking-wider mb-2 block">القطاع الطبي والمستشفيات</span>
-                <h2 class="text-3xl sm:text-5xl font-black mb-6">التخصص المتقدم: Smart Healthcare ERP</h2>
-                <p class="text-slate-300 text-lg">تجربة مزدوجة فريدة تخدم إدارة المستشفى والمريض في وقت واحد بكفاءة غير مسبوقة.</p>
-            </div>
-
-            <!-- Dual Switcher Buttons -->
-            <div class="flex justify-center mb-10">
-                <div class="glass-panel p-1.5 rounded-2xl border border-slate-800 inline-flex space-x-2 space-x-reverse">
-                    <button onclick="switchHealthTab('hospital')" id="btn-health-hospital" class="px-6 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md transition-all">
-                        <i class="fa-solid fa-hospital ml-2"></i> جانب إدارة المستشفى (AI Enterprise)
-                    </button>
-                    <button onclick="switchHealthTab('patient')" id="btn-health-patient" class="px-6 py-3 rounded-xl font-bold text-sm text-slate-300 hover:text-white transition-all">
-                        <i class="fa-solid fa-bed-pulse ml-2"></i> جانب المريض والراحة (Patient Experience)
-                    </button>
-                </div>
-            </div>
-
-            <!-- Hospital Management View -->
-            <div id="health-panel-hospital" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <div class="space-y-6">
-                    <div class="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-chart-line-up"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">تنبؤات الإشغال والضغط (Surge Forecasting)</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            يحلل النظام البيانات المتراكمة ومواسم الأوبئة والطقس للتنبؤ بأوقات الذروة والتكدس في الطوارئ والعيادات الخارجية بدقة تامة، للتحرك المبكر وتوفير الكوادر الإضافية.
-                        </p>
-                    </div>
-                    <div class="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-pills"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">إدارة تكلفة العمليات والمخزون الطبي</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            حساب دقيق لتكلفة العلاج والعمليات، التنبؤ بالنفقات والأرباح، وإدارة مخزون الأدوية والمعدات الحساسة بذكاء لمنع تلف الأدوية والهدر المالي.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Hospital Interactive Mini-Dashboard Preview -->
-                <div class="glass-panel-glow p-8 rounded-3xl border border-cyan-500/40 relative">
-                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
-                        <span class="text-sm font-bold text-cyan-400"><i class="fa-solid fa-circle-dot ml-1 text-emerald-400"></i> لوحة تحكم المستشفى الحية</span>
-                        <span class="text-xs text-slate-400">تحديث لحظي</span>
-                    </div>
-                    <div class="space-y-5">
-                        <div>
-                            <div class="flex justify-between text-xs font-semibold mb-1">
-                                <span class="text-slate-300">إشغال أسرّة العناية المركزة (ICU)</span>
-                                <span class="text-amber-400 font-bold">82% (ضغط مرتفع متوقع غداً)</span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                                <div class="bg-amber-500 h-full rounded-full" style="width: 82%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-xs font-semibold mb-1">
-                                <span class="text-slate-300">معدل كفاءة مخزون الأدوية الحرجة</span>
-                                <span class="text-emerald-400 font-bold">96% (ممتاز)</span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                                <div class="bg-emerald-500 h-full rounded-full" style="width: 96%"></div>
-                            </div>
-                        </div>
-                        <div class="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-xs text-cyan-300 flex items-start space-x-3 space-x-reverse">
-                            <i class="fa-solid fa-triangle-exclamation text-amber-400 text-base mt-0.5"></i>
-                            <div>
-                                <span class="font-bold block mb-1">تنبيه ذكي للطوارئ:</span>
-                                يتوقع النظام ذروة في حالات الحساسية الصدرية يوم الخميس القادم بسبب العواصف الترابية. تم توجيه طلب توريد إضافي لأجهزة التنفس الصناعي تلقائياً.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Patient Experience View -->
-            <div id="health-panel-patient" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center hidden">
-                <div class="space-y-6">
-                    <div class="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-calculator"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">حساب تكلفة العلاج الذكي</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            حساب التكلفة المتوقعة للعلاج للمريض فوراً بناءً على نوع تغطية التأمين وفئة الغرفة المطلوبة، مع اقتراح بدائل اقتصادية ومستلزمات بديلة مناسبة لتخفيف العبء المالي.
-                        </p>
-                    </div>
-                    <div class="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-route"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">التوجيه الطارئ الذكي (Smart Emergency Routing)</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            خريطة تفاعلية ذكية تبحث عن أقرب مستشفى يمتلك سرير طوارئ أو عناية مركزة شاغرة بالفعل، وتوجيه سيارات الإسعاف والحالات الحرجة إليها فوراً دون إهدار وقت أثمن من الدماء.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Patient Interactive Mini-Widget -->
-                <div class="glass-panel-glow p-8 rounded-3xl border border-purple-500/40 relative space-y-6">
-                    <div class="flex items-center justify-between pb-4 border-b border-slate-800">
-                        <span class="text-sm font-bold text-purple-400"><i class="fa-solid fa-mobile-screen ml-1"></i> تطبيق المريض الذكي</span>
-                        <span class="text-xs text-emerald-400">متصل بالعيادة الحية</span>
-                    </div>
-                    <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="text-slate-400">وقت الانتظار الفعلي في عيادة الباطنة:</span>
-                            <span class="text-emerald-400 font-bold">12 دقيقة فقط</span>
-                        </div>
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="text-slate-400">التكلفة التقديرية للجراحة مع التأمين:</span>
-                            <span class="text-cyan-400 font-bold">$340 (تغطية 85%)</span>
-                        </div>
-                    </div>
-                    <button onclick="openConsultationModal()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-95 text-white font-bold text-sm shadow-lg shadow-purple-500/20 transition-all">
-                        <i class="fa-solid fa-location-arrow ml-2"></i> تفعيل التوجيه الطارئ الفوري
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Enterprise Modules Across Industries -->
-    <section id="enterprise-modules" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-cyan-400 text-sm font-bold uppercase tracking-wider mb-2 block">مرونة كاملة لكافة القطاعات</span>
-                <h2 class="text-3xl sm:text-5xl font-black mb-6">القطاعات المدعومة من Smart Care</h2>
-                <p class="text-slate-300 text-lg">منظومة ذكية واحدة تتكيف مع متطلبات كل قطاع اقتصادي بأعلى معايير الدقة والاحترافية.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Card 1: Finance -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-coins"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">المالية (Finance)</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">تحليل التدفقات النقدية، الأرباح، وإعداد موازنات استباقية بالذكاء الاصطناعي.</p>
-                </div>
-
-                <!-- Card 2: HR -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-user-tie"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">التوظيف والـ HR</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">إدارة الأفراد، الترشيح الذكي، وتقييم الأداء الوظيفي المستمر.</p>
-                </div>
-
-                <!-- Card 3: Logistics -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-truck-fast"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">الشحن واللوجستيات</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">تتبع سلاسل الإمداد، محاكاة التأخير، وتحسين مسارات النقل تلقائياً.</p>
-                </div>
-
-                <!-- Card 4: Real Estate -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-building"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">العقارات (Real Estate)</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">إدارة الأصول، تقييم العوائد الاستثمارية، والتنبؤ باتجاهات السوق العقاري.</p>
-                </div>
-
-                <!-- Card 5: Education -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">التعليم والتدريب</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">التنبؤ بتعثر الطلاب، تقييم البرامج، واحتياجات التدريب المؤسسي.</p>
-                </div>
-
-                <!-- Card 6: Maintenance -->
-                <div class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-gears"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">الصيانة والتشغيل</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">إدارة الأعطال الدورية والتنبؤية للمعدات والمرافق الحيوية.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- CEO Decision Simulator & Consultation CTA -->
-    <section id="ceo-simulator" class="py-24 relative bg-gradient-to-b from-slate-950 to-darkBg border-t border-slate-800">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="glass-panel-glow p-8 sm:p-12 rounded-3xl border border-cyan-500/40 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <div class="text-center max-w-2xl mx-auto mb-10">
-                    <span class="px-4 py-1.5 rounded-full bg-cyan-950 text-cyan-300 text-xs font-bold border border-cyan-500/30 mb-4 inline-block">للقيادات التنفيذية ورؤساء مجالس الإدارات</span>
-                    <h2 class="text-3xl sm:text-4xl font-black mb-4">هل أنت مستعد لقيادة مؤسستك بالعقل الذكي؟</h2>
-                    <p class="text-slate-300 text-sm">احجز جلسة استشارية خاصة وعرضاً تجريبياً مخصصاً لبيانات شركتك أو مستشفاك الآن.</p>
-                </div>
-
-                <!-- Interactive Briefing Form -->
-                <form onsubmit="handleConsultationSubmit(event)" class="space-y-4 max-w-xl mx-auto">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <input type="text" id="form-name" required placeholder="الاسم الكريم / اللقب" class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-400 focus:outline-none text-sm text-white">
-                        <input type="text" id="form-org" required placeholder="اسم المؤسسة / المستشفى" class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-400 focus:outline-none text-sm text-white">
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <input type="email" id="form-email" required placeholder="البريد الإلكتروني للعمل" class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-400 focus:outline-none text-sm text-white">
-                        <select id="form-sector" class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-400 focus:outline-none text-sm text-slate-300">
-                            <option value="hospital">القطاع الطبي والمستشفيات</option>
-                            <option value="finance">القطاع المالي والمصرفي</option>
-                            <option value="realestate">القطاع العقاري</option>
-                            <option value="enterprise">مؤسسة صناعية / خدمية كبرى</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="w-full py-4 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-500 hover:opacity-95 shadow-xl shadow-cyan-500/25 transition-all text-base">
-                        <i class="fa-solid fa-paper-plane ml-2"></i> طلب العرض التجريبي والاستشارة القيادية
-                    </button>
-                    <div id="form-success-msg" class="hidden text-center text-emerald-400 text-sm font-bold pt-2">
-                        <i class="fa-solid fa-circle-check ml-1"></i> تم إرسال طلبكم بنجاح! سيتواصل معكم كبير استشاريي الذكاء الاصطناعي خلال ساعتين.
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800/80 py-12 text-slate-400 text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">SC</div>
-                <span class="font-bold text-white text-lg">Smart Care AI</span>
-            </div>
-            <div class="text-xs text-slate-500 text-center sm:text-right">
-                جميع الحقوق محفوظة © 2026 Smart Care ERP. العقل الذكي للمؤسسات والقطاع الطبي.
-            </div>
-            <div class="flex space-x-4 space-x-reverse text-slate-400">
-                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-linkedin text-lg"></i></a>
-                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-twitter text-lg"></i></a>
-                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-github text-lg"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript Application Logic -->
-    <script>
-        // AI Core Engine Tab Switcher
-        function switchAiTab(tabName) {
-            const tabs = ['risk', 'simulation', 'finance'];
-            tabs.forEach(t => {
-                const panel = document.getElementById('panel-' + t);
-                const btn = document.getElementById('btn-tab-' + t);
-                if(t === tabName) {
-                    panel.classList.remove('hidden');
-                    btn.classList.add('border-cyan-500', 'bg-cyan-950/20');
-                    btn.classList.remove('border-slate-800');
-                } else {
-                    panel.classList.add('hidden');
-                    btn.classList.remove('border-cyan-500', 'bg-cyan-950/20');
-                    btn.classList.add('border-slate-800');
-                }
-            });
-        }
-
-        // Healthcare ERP Tab Switcher
-        function switchHealthTab(tabName) {
-            const hospitalPanel = document.getElementById('health-panel-hospital');
-            const patientPanel = document.getElementById('health-panel-patient');
-            const btnHosp = document.getElementById('btn-health-hospital');
-            const btnPat = document.getElementById('btn-health-patient');
-
-            if(tabName === 'hospital') {
-                hospitalPanel.classList.remove('hidden');
-                patientPanel.classList.add('hidden');
-                btnHosp.className = "px-6 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md transition-all";
-                btnPat.className = "px-6 py-3 rounded-xl font-bold text-sm text-slate-300 hover:text-white transition-all";
-            } else {
-                hospitalPanel.classList.add('hidden');
-                patientPanel.classList.remove('hidden');
-                btnPat.className = "px-6 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-md transition-all";
-                btnHosp.className = "px-6 py-3 rounded-xl font-bold text-sm text-slate-300 hover:text-white transition-all";
-            }
-        }
-
-        // Live Risk Simulation Logic
-        function runRiskSimulation() {
-            const r1 = document.getElementById('risk-1').checked;
-            const r2 = document.getElementById('risk-2').checked;
-            const r3 = document.getElementById('risk-3').checked;
-            const output = document.getElementById('risk-output-text');
-            const timestamp = document.getElementById('risk-timestamp');
-
-            timestamp.innerText = "تم التحديث للتو بواسطة الذكاء الاصطناعي";
-
-            if (r1 && r2 && r3) {
-                output.innerHTML = `⚠️ <span class="text-red-400 font-bold">حرج للغاية:</span> تداخل العوامل الثلاثة ينذر بخسارة مالية فادحة قدرها <span class="text-red-400 font-bold">$380,000</span>. العقل الذكي قام بتفعيل تحويل التوريد الاحتياطي وإعادة جدولة الورديات فوراً لامتصاص الصدمة.`;
-            } else if (r1 && r2) {
-                output.innerHTML = `النظام يتوقع خسارة مالية قدرها <span class="text-amber-400 font-bold">$142,000</span> خلال 18 يوماً نتيجة تداخل تأخر التوريد مع تعطل خط الإنتاج. تم إصدار خطة طوارئ مقترحة تتضمن تحويل طلبات التوريد لمورد بديل وتفعيل الصيانة الوقائية السريعة.`;
-            } else if (r3) {
-                output.innerHTML = `🚀 <span class="text-emerald-400 font-bold">فرصة نمو قصوى:</span> زيادة الطلبات بنسبة 40% ستولد أرباحاً إضافية بقيمة <span class="text-emerald-400 font-bold">$210,000</span> بشركة الشحن إذا تم زيادة طاقة التشغيل بنسبة 15%.`;
-            } else {
-                output.innerHTML = `✅ <span class="text-emerald-400 font-bold">استقرار تام:</span> المؤشرات التشغيلية ضمن النطاق الآمن. لا توجد مخاطر متصالبة مرصودة في الأقسام الحالية.`;
-            }
-        }
-
-        // Scenario Simulation (What-If) Live Update
-        function updateSimulation() {
-            const s1 = parseInt(document.getElementById('sim-slider-1').value);
-            const s2 = parseInt(document.getElementById('sim-slider-2').value);
-
-            document.getElementById('slider-val-1').innerText = s1 + '%';
-            document.getElementById('slider-val-2').innerText = s2 + '%';
-
-            const profitCalc = (2.15 - (s1 * 0.04) + (s2 * 0.02)).toFixed(2);
-            const riskCalc = Math.min(85, Math.max(5, s1 * 1.2 - s2 * 0.5)).toFixed(0);
-
-            document.getElementById('sim-res-profit').innerText = (profitCalc >= 0 ? '+ $' : '- $') + Math.abs(profitCalc) + 'M';
-            const riskEl = document.getElementById('sim-res-risk');
-            riskEl.innerText = riskCalc < 20 ? `منخفض (${riskCalc}%)` : (riskCalc < 50 ? `متوسط (${riskCalc}%)` : `مرتفع (${riskCalc}%)`);
-            riskEl.className = "text-xl font-black " + (riskCalc < 20 ? 'text-emerald-400' : (riskCalc < 50 ? 'text-amber-400' : 'text-red-400'));
-        }
-
-        // CEO Action Alert Box (replacement for alert())
-        function alertCEOAction() {
-            const box = document.createElement('div');
-            box.className = "fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4";
-            box.innerHTML = `
-                <div class="glass-panel p-6 rounded-3xl border border-cyan-500 max-w-md w-full space-y-4 text-center">
-                    <div class="w-16 h-16 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-3xl mx-auto">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">تم اعتماد خطة الحل القيادية بنجاح</h3>
-                    <p class="text-slate-300 text-sm">أرسل العقل الذكي التوجيهات تلقائياً إلى نظام ERP المالي ولوجستيات التوريد لتلافي الخسارة المتوقعة بالكامل.</p>
-                    <button onclick="this.closest('.fixed').remove()" class="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm transition-all">
-                        إغلاق والتخطي
-                    </button>
-                </div>
-            `;
-            document.body.appendChild(box);
-        }
-
-        // Open Consultation Modal Scroll
-        function openConsultationModal() {
-            document.getElementById('ceo-simulator').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Form Submit Handler
-        function handleConsultationSubmit(e) {
-            e.preventDefault();
-            document.getElementById('form-success-msg').classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('form-name').value = '';
-                document.getElementById('form-org').value = '';
-                document.getElementById('form-email').value = '';
-            }, 1000);
-        }
-    </script>
 </body>
 </html>
