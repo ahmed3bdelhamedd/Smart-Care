@@ -3,42 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | إدارة العقارات والأصول</title>
+  <title>Smart Care | Real Estate & Asset Management</title>
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <nav class="smart-navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="logo-icon">🧠</div>
-      <h1>Smart Care</h1>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">الرئيسية (CEO)</a></li>
-      <li><a href="healthcare.html">القطاع الطبي</a></li>
-      <li><a href="risk-engine.html">محرك المخاطر والمحاكاة</a></li>
-      <li><a href="finance.html">المالية</a></li>
-      <li><a href="hr.html">الموارد البشرية</a></li>
-      <li><a href="logistics.html">اللوجستيات</a></li>
-      <li><a href="real-estate.html" class="active">العقارات</a></li>
-      <li><a href="education.html">التعليم</a></li>
-      <li><a href="maintenance.html">الصيانة</a></li>
-    </ul>
-  </nav>
-
+  <div id="navbar-placeholder"></div>
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>🏢 إدارة العقارات والأصول (Real Estate & Assets)</h2>
-      <p>إدارة العقارات الطبية والإدارية، حساب عوائد الإيجار، وتتبع جدولة الصيانة الدورية للأصول.</p>
+      <h2>🏢 Real Estate & Asset Management</h2>
+      <p>Managing clinical and administrative properties, rental yield calculations, and asset lifecycle maintenance.</p>
     </div>
-
     <div class="glass-card">
-      <h3 style="color: var(--accent-purple); margin-bottom: 15px;">معدل إشغال الأصول والعقارات</h3>
+      <h3 style="color: var(--accent-purple); margin-bottom: 15px;">Asset & Property Occupancy Index</h3>
       <p style="color: var(--text-muted); line-height: 1.7;">
-        نسبة الإشغال الإجمالية للمقار والعيادات تبلغ 91% مع توقعات بزيادة العوائد بنسبة 8% خلال النصف القادم.
+        Aggregate occupancy rate across all medical and administrative branches stands at 91% with forecasted yield growth of 8% next fiscal half.
       </p>
     </div>
   </div>
-
+  <script>
+    fetch('header.html').then(res => res.text()).then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+      const cur = window.location.pathname.split("/").pop() || 'index.html';
+      document.querySelectorAll('.nav-link-item').forEach(l => {
+        if(l.getAttribute('data-page') === cur) l.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
