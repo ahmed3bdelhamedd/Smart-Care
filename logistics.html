@@ -3,42 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | سلاسل الإمداد واللوجستيات</title>
+  <title>Smart Care | Logistics & Supply Chain</title>
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <nav class="smart-navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="logo-icon">🧠</div>
-      <h1>Smart Care</h1>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">الرئيسية (CEO)</a></li>
-      <li><a href="healthcare.html">القطاع الطبي</a></li>
-      <li><a href="risk-engine.html">محرك المخاطر والمحاكاة</a></li>
-      <li><a href="finance.html">المالية</a></li>
-      <li><a href="hr.html">الموارد البشرية</a></li>
-      <li><a href="logistics.html" class="active">اللوجستيات</a></li>
-      <li><a href="real-estate.html">العقارات</a></li>
-      <li><a href="education.html">التعليم</a></li>
-      <li><a href="maintenance.html">الصيانة</a></li>
-    </ul>
-  </nav>
-
+  <div id="navbar-placeholder"></div>
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>📦 الشحن وسلاسل الإمداد (Logistics & Supply Chain)</h2>
-      <p>تتبع حركة الشحنات، تقييم أداء الموردين، ومحاكاة التأخير البحري والجوي.</p>
+      <h2>📦 Logistics & Supply Chain Simulation</h2>
+      <p>Tracking shipments, vendor reliability metrics, and marine/aerial delay simulation models.</p>
     </div>
-
     <div class="glass-card">
-      <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">حالة شحنات المستودعات الإقليمية</h3>
+      <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">Regional Warehouse Shipment Status</h3>
       <p style="color: var(--text-muted); line-height: 1.7;">
-        جميع الشحنات تسير وفق الجدول الزمني عدا شحنة الأجهزة الطبية القادمة عبر الميناء الرئيسي (تأخير متوقع 3 أيام تم التعامل معه آلياً وتحويل المسار).
+        All active shipments operating on schedule except primary medical device container arriving via main port (predicted 3-day delay successfully mitigated by auto-rerouting).
       </p>
     </div>
   </div>
-
+  <script>
+    fetch('header.html').then(res => res.text()).then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+      const cur = window.location.pathname.split("/").pop() || 'index.html';
+      document.querySelectorAll('.nav-link-item').forEach(l => {
+        if(l.getAttribute('data-page') === cur) l.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
