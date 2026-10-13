@@ -9,26 +9,22 @@
 </head>
 <body>
   <div id="navbar-placeholder"></div>
+
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>⚙️ Predictive Maintenance & Operations</h2>
-      <p>Forecasting equipment failure before occurrence and scheduling automated preventative maintenance.</p>
+      <h2>⚙️ الصيانة والتشغيل (Predictive Maintenance)</h2>
+      <p>التنبؤ بأعطال المعدات الطبية والتشغيلية قبل حدوثها وجدولة الصيانة الوقائية.</p>
     </div>
+
     <div class="glass-card">
-      <h3 style="color: var(--accent-emerald); margin-bottom: 15px;">Sensitive Equipment Health Status</h3>
-      <p style="color: var(--text-muted); line-height: 1.7;">
-        MRI scanner unit #2 requires preventative calibration within 5 days to prevent unexpected downtime. Technical team scheduled automatically.
+      <h3 style="color: var(--accent-emerald); margin-bottom: 15px;">حالة الأجهزة والمعدات الحساسة</h3>
+      <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 15px;">
+        جهاز الرنين المغناطيسي رقم 2 يتطلب صيانة وقائية خلال 5 أيام لتجنب أي توقف غير مخطط له. تم جدولة الفريق الفني تلقائياً.
       </p>
+      <span class="badge badge-success">🛠️ حالة المولدات والأجهزة: ممتازة</span>
     </div>
   </div>
-  <script>
-    fetch('header.html').then(res => res.text()).then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      const cur = window.location.pathname.split("/").pop() || 'index.html';
-      document.querySelectorAll('.nav-link-item').forEach(l => {
-        if(l.getAttribute('data-page') === cur) l.classList.add('active');
-      });
-    });
-  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
