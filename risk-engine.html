@@ -3,73 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | Cross-Department Risk & Simulation</title>
+  <title>Smart Care | Risk Engine & Simulation</title>
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div id="navbar-placeholder"></div>
 
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>⚡ Cross-Department Risk Engine & What-If Simulation</h2>
-      <p>Simulating complex operational scenarios to estimate profits, losses, and resilience before execution.</p>
+      <h2 data-ar="⚡ محرك الربط التنبؤي المتصالب والمحاكاة" data-en="⚡ Cross-Department Risk Engine">⚡ محرك الربط التنبؤي المتصالب والمحاكاة</h2>
+      <p data-ar="اختبار سيناريوهات (ماذا لو؟) لتوقع الخسائر والأرباح قبل اتخاذ القرار." data-en="What-if simulation matrix to predict outcomes and mitigate financial losses.">اختبار سيناريوهات (ماذا لو؟) لتوقع الخسائر والأرباح قبل اتخاذ القرار.</p>
     </div>
 
-    <div class="grid-2" style="margin-bottom: 35px;">
+    <div class="grid-2">
       <div class="glass-card">
-        <h3 style="margin-bottom: 20px; font-size: 18px; color: var(--accent-cyan);">What-if Scenario Matrix</h3>
-        
+        <h3 style="margin-bottom: 15px; color: var(--accent-cyan);" data-ar="مصفوفة اختبار السيناريوهات" data-en="Scenario Test Matrix">مصفوفة اختبار السيناريوهات</h3>
         <div style="margin-bottom: 20px;">
-          <label style="display: block; font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Supply Chain Delay Factor:</label>
+          <label style="font-size: 13px; color: var(--text-muted);" data-ar="نسبة تأخر الموردين:" data-en="Supply Delay Rate:">نسبة تأخر الموردين:</label>
           <input type="range" min="0" max="100" value="25" style="width: 100%; accent-color: var(--accent-cyan);">
         </div>
-
         <div style="margin-bottom: 20px;">
-          <label style="display: block; font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Sudden Patient Surge Rate:</label>
+          <label style="font-size: 13px; color: var(--text-muted);" data-ar="زيادة الطلب المفاجئ:" data-en="Sudden Surge Rate:">زيادة الطلب المفاجئ:</label>
           <input type="range" min="0" max="100" value="40" style="width: 100%; accent-color: var(--accent-purple);">
         </div>
-
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; font-size: 14px; margin-bottom: 8px; color: var(--text-muted);">Operational Maintenance Efficiency:</label>
-          <input type="range" min="0" max="100" value="85" style="width: 100%; accent-color: var(--accent-emerald);">
-        </div>
-
-        <button class="btn-primary" style="width: 100%; justify-content: center;">Execute Neural Simulation 🔄</button>
+        <button class="btn-primary" style="width: 100%; justify-content: center;" data-ar="تشغيل المحاكاة الفورية 🔄" data-en="Execute Simulation 🔄">تشغيل المحاكاة الفورية 🔄</button>
       </div>
 
       <div class="glass-card">
-        <h3 style="margin-bottom: 20px; font-size: 18px; color: var(--accent-emerald);">AI Predictive Impact Analysis</h3>
-        
-        <div style="display: flex; flex-direction: column; gap: 18px;">
-          <div style="background: rgba(3, 7, 18, 0.6); padding: 18px; border-radius: 12px; border: 1px solid var(--border-color);">
-            <span style="color: var(--text-muted); font-size: 13px;">Net Profit Variance Impact:</span>
-            <h4 style="font-size: 24px; color: var(--accent-rose); margin-top: 5px;">- 12.4% ($45,000 Potential Loss)</h4>
-          </div>
-
-          <div style="background: rgba(3, 7, 18, 0.6); padding: 18px; border-radius: 12px; border: 1px solid var(--border-color);">
-            <span style="color: var(--text-muted); font-size: 13px;">Optimal Decision Window:</span>
-            <h4 style="font-size: 18px; color: var(--accent-cyan); margin-top: 5px;">Within Next 72 Hours</h4>
-          </div>
-
-          <div style="background: rgba(3, 7, 18, 0.6); padding: 18px; border-radius: 12px; border: 1px solid var(--border-color);">
-            <span style="color: var(--text-muted); font-size: 13px;">Recommended Executive Action:</span>
-            <p style="font-size: 14px; color: var(--text-main); margin-top: 5px;">Increase strategic buffer inventory by 15% and redirect surplus outpatient load to regional node B.</p>
-          </div>
+        <h3 style="margin-bottom: 15px; color: var(--accent-emerald);" data-ar="توقعات الذكاء الاصطناعي للنتائج" data-en="AI Predictive Impact">توقعات الذكاء الاصطناعي للنتائج</h3>
+        <div style="background: rgba(3, 7, 18, 0.6); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+          <span style="font-size: 13px; color: var(--text-muted);" data-ar="تأثير العوامل على صافي الأرباح:" data-en="Net Profit Impact:">تأثير العوامل على صافي الأرباح:</span>
+          <h4 style="font-size: 22px; color: var(--accent-rose); margin-top: 5px;">- 12.4% ($45,000 خسارة محتملة)</h4>
         </div>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;" data-ar="التوصية: زيادة المخزون الاستراتيجي بنسبة 15% وتفعيل المورد البديل فوراً." data-en="Recommendation: Increase buffer stock by 15% and activate secondary vendor.">التوصية: زيادة المخزون الاستراتيجي بنسبة 15% وتفعيل المورد البديل فوراً.</p>
       </div>
     </div>
   </div>
 
-  <script>
-    fetch('header.html').then(res => res.text()).then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      const cur = window.location.pathname.split("/").pop() || 'index.html';
-      document.querySelectorAll('.nav-link-item').forEach(l => {
-        if(l.getAttribute('data-page') === cur) l.classList.add('active');
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
