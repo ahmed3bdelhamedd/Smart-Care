@@ -32,6 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const placeholder = document.getElementById('navbar-placeholder');
   if(placeholder) placeholder.innerHTML = headerHTML;
 
+  // Active Link Highlight
+  const currentPath = window.location.pathname.split("/").pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if(link.getAttribute('href') === currentPath) {
+      link.classList.add('active');
+    }
+  });
+
   // Theme Logic
   const themeBtn = document.getElementById('theme-toggle');
   const savedTheme = localStorage.getItem('theme') || 'dark';
