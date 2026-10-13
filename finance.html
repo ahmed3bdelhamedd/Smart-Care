@@ -3,43 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | Financial Health & Analytics</title>
+  <title>Smart Care | Financial Health</title>
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div id="navbar-placeholder"></div>
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>💰 Financial Health & Cash Flow Intelligence</h2>
-      <p>Advanced financial auditing and forecasting comparable to tier-one global audit standards (Deloitte & KPMG).</p>
+      <h2 data-ar="💰 الإدارة المالية وتحليلات التدفقات النقدية" data-en="💰 Financial Health & Cash Flow">💰 الإدارة المالية وتحليلات التدفقات النقدية</h2>
+      <p data-ar="تقارير مالية تضاهي أكبر شركات التدقيق العالمية (Deloitte & KPMG)." data-en="Advanced financial reports matching top global audit standards.">تقارير مالية تضاهي أكبر شركات التدقيق العالمية (Deloitte & KPMG).</p>
     </div>
-    <div class="grid-3" style="margin-bottom: 35px;">
+    <div class="grid-3" style="margin-bottom: 30px;">
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px;">Free Cash Flow</p>
-        <h3 style="font-size: 28px; font-weight: 900; color: var(--accent-cyan);">$840,000</h3>
-        <span class="badge badge-success" style="margin-top: 10px;">Stable & Robust</span>
+        <p style="color: var(--text-muted); font-size: 13px;">Free Cash Flow</p>
+        <h3 style="font-size: 26px; font-weight: 900; color: var(--accent-cyan);">$840,000</h3>
+        <span class="badge badge-success" style="margin-top: 8px;">Stable</span>
       </div>
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px;">Return on Investment (ROI)</p>
-        <h3 style="font-size: 28px; font-weight: 900; color: var(--accent-emerald);">28.4%</h3>
-        <span class="badge badge-success" style="margin-top: 10px;">Exceeds Target</span>
+        <p style="color: var(--text-muted); font-size: 13px;">ROI Rate</p>
+        <h3 style="font-size: 26px; font-weight: 900; color: var(--accent-emerald);">28.4%</h3>
+        <span class="badge badge-success" style="margin-top: 8px;">Optimal</span>
       </div>
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px;">Projected Opex</p>
-        <h3 style="font-size: 28px; font-weight: 900; color: var(--accent-amber);">$310,000</h3>
-        <span class="badge badge-warning" style="margin-top: 10px;">Optimization Suggested</span>
+        <p style="color: var(--text-muted); font-size: 13px;">Projected Opex</p>
+        <h3 style="font-size: 26px; font-weight: 900; color: var(--accent-amber);">$310,000</h3>
+        <span class="badge badge-warning" style="margin-top: 8px;">Review Needed</span>
       </div>
+    </div>
+    <div class="glass-card">
+      <h3 style="margin-bottom: 15px; color: var(--accent-cyan);" data-ar="مؤشر الأرباح والمصروفات النصف سنوية" data-en="Semi-Annual Revenue & Expense Index">مؤشر الأرباح والمصروفات النصف سنوية</h3>
+      <div style="height: 250px;"><canvas id="finChart"></canvas></div>
     </div>
   </div>
+  <script src="script.js"></script>
   <script>
-    fetch('header.html').then(res => res.text()).then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      const cur = window.location.pathname.split("/").pop() || 'index.html';
-      document.querySelectorAll('.nav-link-item').forEach(l => {
-        if(l.getAttribute('data-page') === cur) l.classList.add('active');
+    setTimeout(() => {
+      const ctx = document.getElementById('finChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['الأرباح الصافية', 'المصروفات التشغيلية', 'الاحتياطي الاستراتيجي'],
+          datasets: [{
+            data: [55, 30, 15],
+            backgroundColor: ['#10b981', '#f59e0b', '#38bdf8']
+          }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#94a3b8' } } } }
       });
-    });
+    }, 500);
   </script>
 </body>
 </html>
