@@ -1,51 +1,27 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | Polyglot Core Architecture</title>
-  <link rel="icon" type="image/jpeg" href="logo.jpg">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div id="navbar-placeholder"></div>
-  <div class="page-container animate-fade">
-    <div class="section-header">
-      <h2>⚙️ Polyglot Core Architecture (C++ / C# / Java)</h2>
-      <p>The high-performance backend infrastructure providing lightning-fast execution, military-grade security, and 99.99% uptime.</p>
-    </div>
-    <div class="grid-3" style="margin-bottom: 35px;">
-      <div class="glass-card" style="border-top: 4px solid #00599C;">
-        <h3 style="color: #38bdf8; margin-bottom: 10px;">C++ High-Performance Engine</h3>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Handles ultra-fast risk calculations and what-if simulation matrices in under 2 milliseconds.</p>
-        <div style="background: rgba(3, 7, 18, 0.9); padding: 10px; border-radius: 8px; font-family: monospace; font-size: 11px; color: #38bdf8; direction: ltr;">
-          void PredictRisk(DataStream& ds) {<br>&nbsp;&nbsp;double risk = ds.calcEntropy();<br>&nbsp;&nbsp;if(risk > 0.85) alertCEO();<br>}
+<!-- Professional Navbar (RTL) -->
+  <nav class="smart-navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="logo.jpg" alt="Logo" class="logo-img">
+      <h1>Smart Care</h1>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية (CEO)</a></li>
+      <li><a href="healthcare.html">القطاع الطبي</a></li>
+      <li><a href="risk-engine.html">محرك المخاطر</a></li>
+      
+      <!-- Dropdown Menu -->
+      <li class="dropdown">
+        <a href="#">القطاعات والأقسام ▾</a>
+        <div class="dropdown-content">
+          <a href="finance.html">💰 الإدارة المالية</a>
+          <a href="hr.html">👥 الموارد البشرية</a>
+          <a href="logistics.html">📦 اللوجستيات</a>
+          <a href="real-estate.html">🏢 العقارات والأصول</a>
+          <a href="education.html">🎓 التعليم والتدريب</a>
+          <a href="maintenance.html">⚙️ الصيانة والتشغيل</a>
         </div>
-      </div>
-      <div class="glass-card" style="border-top: 4px solid #68217A;">
-        <h3 style="color: #a855f7; margin-bottom: 10px;">C# .NET Enterprise Core</h3>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Manages core ERP database integrations and bank-grade secure transaction auditing.</p>
-        <div style="background: rgba(3, 7, 18, 0.9); padding: 10px; border-radius: 8px; font-family: monospace; font-size: 11px; color: #c084fc; direction: ltr;">
-          public async Task&lt;Health&gt; GetScore() {<br>&nbsp;&nbsp;return await _db.AnalyzeAsync();<br>}
-        </div>
-      </div>
-      <div class="glass-card" style="border-top: 4px solid #f89820;">
-        <h3 style="color: #fbbf24; margin-bottom: 10px;">Java Microservices Engine</h3>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Manages scalable microservices architecture ensuring robust 24/7 patient routing.</p>
-        <div style="background: rgba(3, 7, 18, 0.9); padding: 10px; border-radius: 8px; font-family: monospace; font-size: 11px; color: #fde047; direction: ltr;">
-          @RestController<br>public class RouteController {<br>&nbsp;&nbsp;public ResponseEntity findBed() {..}<br>}
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    fetch('header.html').then(res => res.text()).then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      const cur = window.location.pathname.split("/").pop() || 'index.html';
-      document.querySelectorAll('.nav-link-item').forEach(l => {
-        if(l.getAttribute('data-page') === cur) l.classList.add('active');
-      });
-    });
-  </script>
-</body>
-</html>
+      </li>
+
+      <li><a href="tech-core.html">النوى البرمجية</a></li>
+    </ul>
+  </nav>
