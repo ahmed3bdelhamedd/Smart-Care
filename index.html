@@ -3,93 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | العقل الذكي للمؤسسات والقطاع الطبي</title>
+  <title>Smart Care | Executive CEO Dashboard</title>
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="smart-navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="logo-icon">🧠</div>
-      <h1>Smart Care</h1>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">الرئيسية (CEO)</a></li>
-      <li><a href="healthcare.html">القطاع الطبي</a></li>
-      <li><a href="risk-engine.html">محرك المخاطر والمحاكاة</a></li>
-      <li><a href="finance.html">المالية</a></li>
-      <li><a href="hr.html">الموارد البشرية</a></li>
-      <li><a href="logistics.html">اللوجستيات</a></li>
-      <li><a href="real-estate.html">العقارات</a></li>
-      <li><a href="education.html">التعليم</a></li>
-      <li><a href="maintenance.html">الصيانة</a></li>
-    </ul>
-  </nav>
+  <div id="navbar-placeholder"></div>
 
-  <!-- Content -->
   <div class="page-container animate-fade">
     
-    <!-- Hero Banner -->
-    <div class="glass-card" style="margin-bottom: 30px; background: linear-gradient(135deg, rgba(11, 19, 41, 0.9), rgba(30, 41, 59, 0.8));">
-      <div style="max-width: 800px;">
-        <span class="badge badge-success" style="margin-bottom: 15px;">⚡ AI Core Engine نشط ومستقر</span>
-        <h2 style="font-size: 36px; margin-bottom: 15px; font-weight: 900;">العقل الذكي للمؤسسات والقطاع الطبي</h2>
+    <div class="glass-card" style="margin-bottom: 35px; background: linear-gradient(135deg, rgba(11, 19, 41, 0.95), rgba(30, 41, 59, 0.85));">
+      <div style="max-width: 850px;">
+        <span class="badge badge-success" style="margin-bottom: 18px;">⚡ AI Core Engine v4.8 Active & Secure</span>
+        <h2 style="font-size: 38px; margin-bottom: 15px; font-weight: 900;">Enterprise Intelligence & Medical Ecosystem</h2>
         <p style="color: var(--text-muted); font-size: 16px; line-height: 1.8; margin-bottom: 25px;">
-          ليس مجرد نظام ERP تقليدي، بل المنظومة المعرفية الأولى التي تربط الأقسام ببعضها، تتنبأ بالمخاطر والخسائر قبل وقوعها بأسابيع، وتقدم قرارات فورية وحلولاً جاهزة للقيادات والـ CEO.
+          Not just a traditional ERP system, but an advanced cognitive engine that interconnects all institutional departments, predicts financial and operational risks weeks in advance, and delivers instant, automated executive decisions to CEOs and leaders.
         </p>
-        <div style="display: flex; gap: 15px;">
-          <a href="risk-engine.html" class="btn-primary">تشغيل محرك المخاطر التنبؤي 🚀</a>
-          <a href="healthcare.html" style="background: transparent; color: var(--accent-cyan); border: 1px solid var(--border-color);" class="btn-primary">استعراض القطاع الطبي</a>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <a href="risk-engine.html" class="btn-primary">Launch Risk Simulation Engine 🚀</a>
+          <a href="healthcare.html" style="background: transparent; color: var(--accent-cyan); border: 1px solid var(--border-color);" class="btn-primary">Explore Smart Healthcare</a>
         </div>
       </div>
     </div>
 
-    <!-- Stats Grid -->
-    <div class="grid-4" style="margin-bottom: 30px;">
+    <div class="grid-4" style="margin-bottom: 35px;">
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">مؤشر الصحة المالية العام</p>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">Global Financial Health Score</p>
         <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-emerald);">94.8%</h3>
-        <span style="font-size: 12px; color: var(--accent-emerald);">↑ 4.2% عن الشهر السابق</span>
+        <span style="font-size: 12px; color: var(--accent-emerald);">↑ 4.2% vs Last Month</span>
       </div>
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">التنبؤات المبكرة النشطة</p>
-        <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-cyan);">14 تنبيه</h3>
-        <span style="font-size: 12px; color: var(--accent-cyan);">تم معالجة 11 بنجاح</span>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">Active Predictive Warnings</p>
+        <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-cyan);">14 Alerts</h3>
+        <span style="font-size: 12px; color: var(--accent-cyan);">11 Resolved Automatically</span>
       </div>
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">إجمالي الأقسام المربوطة</p>
-        <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-purple);">8 قطاعات</h3>
-        <span style="font-size: 12px; color: var(--text-muted);">تزامن لحظي للبيانات</span>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">Interconnected Sectors</p>
+        <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-purple);">8 Modules</h3>
+        <span style="font-size: 12px; color: var(--text-muted);">Real-time Neural Sync</span>
       </div>
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">توفير الخسائر المتوقعة</p>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">Predicted Losses Prevented</p>
         <h3 style="font-size: 32px; font-weight: 900; color: var(--accent-amber);">$1.2M</h3>
-        <span style="font-size: 12px; color: var(--accent-amber);">بفضل التدخل الاستباقي للـ AI</span>
+        <span style="font-size: 12px; color: var(--accent-amber);">Via Proactive AI Intervention</span>
       </div>
     </div>
 
-    <!-- Cross-Department Risk Alert Box -->
-    <div class="glass-card" style="border-color: rgba(244, 63, 94, 0.4); margin-bottom: 30px;">
+    <div class="glass-card" style="border-color: rgba(244, 63, 94, 0.4); margin-bottom: 35px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
         <h3 style="display: flex; align-items: center; gap: 10px; color: var(--accent-rose);">
-          🚨 تنبيه عاجل للـ CEO (تم اكتشافه عبر الربط المتصالب)
+          🚨 Critical CEO Alert (Cross-Department Neural Risk Detected)
         </h3>
-        <span class="badge badge-danger">خطورة عالية جداً</span>
+        <span class="badge badge-danger">High Severity Risk</span>
       </div>
       <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
-        رصد النظام تأخراً محتملاً للمورد (شركة الخليج للمعدات) بنسبة 14 يومًا + زيادة طلبات العناية المركزة بنسبة 35% + عطل وشيك في مولد الطاقة الرئيسي. يتوقع النظام خسارة مالية بقيمة <strong>$180,000</strong> خلال 3 أسابيع إذا لم يتم التدخل.
+        The system detected a potential 14-day supply chain delay + 35% surge in ICU patient demand + imminent generator maintenance failure. Projected financial loss: <strong>$180,000</strong> within 3 weeks if left unmitigated.
       </p>
-      <div style="background: rgba(15, 23, 42, 0.9); padding: 15px; border-radius: 10px; border-right: 4px solid var(--accent-emerald);">
-        <strong style="color: var(--accent-emerald); display: block; margin-bottom: 5px;">خطة الحل الجاهزة المقترحة من AI Core:</strong>
-        1. تفعيل المورد البديل (مورد الشرق الأوسط) فوراً لتوفير قطع الغيار خلال 48 ساعة.<br>
-        2. جدولة الصيانة الوقائية لمولد الطاقة في فترة ذروة أقل انشغالاً.<br>
-        3. إعادة توجيه 15% من الحالات غير العاجلة للفرع الثاني لتقليل الضغط.
+      <div style="background: rgba(3, 7, 18, 0.9); padding: 20px; border-radius: 12px; border-right: 4px solid var(--accent-emerald);">
+        <strong style="color: var(--accent-emerald); display: block; margin-bottom: 8px;">AI Core Automated Solution Plan:</strong>
+        1. Instantly activate secondary certified supplier to secure replacement parts within 48 hours.<br>
+        2. Reschedule preventative power generator maintenance during off-peak operational hours.<br>
+        3. Reroute 15% of non-critical outpatient loads to secondary regional facility.
       </div>
     </div>
 
   </div>
 
+  <script>
+    fetch('header.html').then(res => res.text()).then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+      const cur = window.location.pathname.split("/").pop() || 'index.html';
+      document.querySelectorAll('.nav-link-item').forEach(l => {
+        if(l.getAttribute('data-page') === cur) l.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
