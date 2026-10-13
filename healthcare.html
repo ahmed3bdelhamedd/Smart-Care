@@ -3,84 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | القطاع الطبي والمستشفيات الذكية</title>
+  <title>Smart Care | Smart Healthcare ERP</title>
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="smart-navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="logo-icon">🧠</div>
-      <h1>Smart Care</h1>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">الرئيسية (CEO)</a></li>
-      <li><a href="healthcare.html" class="active">القطاع الطبي</a></li>
-      <li><a href="risk-engine.html">محرك المخاطر والمحاكاة</a></li>
-      <li><a href="finance.html">المالية</a></li>
-      <li><a href="hr.html">الموارد البشرية</a></li>
-      <li><a href="logistics.html">اللوجستيات</a></li>
-      <li><a href="real-estate.html">العقارات</a></li>
-      <li><a href="education.html">التعليم</a></li>
-      <li><a href="maintenance.html">الصيانة</a></li>
-    </ul>
-  </nav>
+  <div id="navbar-placeholder"></div>
 
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>🏥 القطاع الطبي والمستشفيات (Smart Healthcare ERP)</h2>
-      <p>تجربة مزدوجة فريدة تخدم إدارة المستشفى والمريض في وقت واحد بذكاء اصطناعي فائق.</p>
+      <h2>🏥 Smart Healthcare ERP & Dual Management</h2>
+      <p>Simultaneous dual-experience optimized for hospital executive administration and seamless patient care.</p>
     </div>
 
-    <!-- Hospital Management vs Patient Experience -->
-    <div class="grid-2" style="margin-bottom: 30px;">
-      
-      <!-- Hospital Admin -->
+    <div class="grid-2" style="margin-bottom: 35px;">
       <div class="glass-card">
-        <h3 style="color: var(--accent-cyan); margin-bottom: 20px; font-size: 20px;">🏢 جانب إدارة المستشفى (AI Enterprise Management)</h3>
+        <h3 style="color: var(--accent-cyan); margin-bottom: 20px; font-size: 20px;">🏢 AI Enterprise Management (Hospital Administration)</h3>
         
-        <div style="margin-bottom: 20px;">
+        <div style="margin-bottom: 25px;">
           <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-            <span>تنبؤات الإشغال والضغط (الطوارئ والعيادات)</span>
-            <strong style="color: var(--accent-amber);">92% (ذروة متوقعة 8 مساءً)</strong>
+            <span>Occupancy & Emergency Peak Predictions</span>
+            <strong style="color: var(--accent-amber);">92% (Peak Expected @ 20:00)</strong>
           </div>
-          <p style="font-size: 13px; color: var(--text-muted);">تحليل البيانات المتراكمة للتنبؤ بأوقات التكدس والتحرك المبكر لتوزيع الكوادر الطبية.</p>
+          <p style="font-size: 13px; color: var(--text-muted);">Historical machine-learning analytics forecasting patient influx to optimize medical staff allocation.</p>
         </div>
 
         <div style="margin-bottom: 20px;">
           <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-            <span>إدارة تكلفة العمليات والمخزون الدوائي</span>
-            <strong style="color: var(--accent-emerald);">صفر هدر مالي</strong>
+            <span>Surgical Cost & Pharmaceutical Inventory</span>
+            <strong style="color: var(--accent-emerald);">Zero Financial Waste</strong>
           </div>
-          <p style="font-size: 13px; color: var(--text-muted);">حساب دقيق لتكلفة العلاج، والتنبؤ بالنفقات والأرباح وإدارة مخزون الأدوية لمنع تلفها.</p>
+          <p style="font-size: 13px; color: var(--text-muted);">Precise treatment cost calculation, profit-margin forecasting, and automated drug expiry tracking.</p>
         </div>
       </div>
 
-      <!-- Patient Experience -->
       <div class="glass-card">
-        <h3 style="color: var(--accent-purple); margin-bottom: 20px; font-size: 20px;">💙 جانب المريض والراحة (Patient Experience & Care)</h3>
+        <h3 style="color: var(--accent-purple); margin-bottom: 20px; font-size: 20px;">💙 Patient Experience & Care Architecture</h3>
         
         <div style="margin-bottom: 20px;">
-          <strong style="display: block; color: var(--text-main); margin-bottom: 5px;">حساب تكلفة العلاج الذكي:</strong>
-          <p style="font-size: 13px; color: var(--text-muted);">حساب التكلفة المتوقعة بدقة بناءً على تغطية التأمين، فئة الغرفة، مع اقتراح بدائل اقتصادية مناسبة.</p>
+          <strong style="display: block; color: var(--text-main); margin-bottom: 5px;">Smart Treatment Cost Estimator:</strong>
+          <p style="font-size: 13px; color: var(--text-muted);">Real-time algorithmic estimation based on insurance coverage tier and room category with economic alternatives.</p>
         </div>
 
         <div style="margin-bottom: 20px;">
-          <strong style="display: block; color: var(--text-main); margin-bottom: 5px;">مؤشر الزحمة ووقت الانتظار الفعلي:</strong>
-          <p style="font-size: 13px; color: var(--text-muted);">متابعة حالة العيادة والوقت المتوقع للانتظار مباشرة من تطبيق المريض من المنزل.</p>
+          <strong style="display: block; color: var(--text-main); margin-bottom: 5px;">Live Waiting Time & Congestion Index:</strong>
+          <p style="font-size: 13px; color: var(--text-muted);">Live tracking of clinic queues and estimated waiting times directly accessible from mobile app.</p>
         </div>
 
         <div>
-          <strong style="display: block; color: var(--text-main); margin-bottom: 5px;">التوجيه الطارئ الذكي (Smart Emergency Routing):</strong>
-          <p style="font-size: 13px; color: var(--text-muted);">خريطة تفاعلية تبحث عن أقرب مستشفى يمتلك سرير عناية مركزة شاغر وتوجيه الحالات الحرجة فوراً.</p>
+          <strong style="display: block; color: var(--text-main); margin-bottom: 5px;">Smart Emergency Routing:</strong>
+          <p style="font-size: 13px; color: var(--text-muted);">Interactive GIS map detecting nearest hospital with verified available ICU beds for critical trauma cases.</p>
         </div>
       </div>
-
     </div>
-
   </div>
 
+  <script>
+    fetch('header.html').then(res => res.text()).then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+      const cur = window.location.pathname.split("/").pop() || 'index.html';
+      document.querySelectorAll('.nav-link-item').forEach(l => {
+        if(l.getAttribute('data-page') === cur) l.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
