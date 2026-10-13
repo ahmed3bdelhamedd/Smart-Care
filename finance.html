@@ -3,55 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | الإدارة المالية والصحة المؤسسية</title>
+  <title>Smart Care | Financial Health & Analytics</title>
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
-  <nav class="smart-navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="logo-icon">🧠</div>
-      <h1>Smart Care</h1>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">الرئيسية (CEO)</a></li>
-      <li><a href="healthcare.html">القطاع الطبي</a></li>
-      <li><a href="risk-engine.html">محرك المخاطر والمحاكاة</a></li>
-      <li><a href="finance.html" class="active">المالية</a></li>
-      <li><a href="hr.html">الموارد البشرية</a></li>
-      <li><a href="logistics.html">اللوجستيات</a></li>
-      <li><a href="real-estate.html">العقارات</a></li>
-      <li><a href="education.html">التعليم</a></li>
-      <li><a href="maintenance.html">الصيانة</a></li>
-    </ul>
-  </nav>
-
+  <div id="navbar-placeholder"></div>
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>💰 الإدارة المالية وتحليلات التدفقات النقدية</h2>
-      <p>تقارير مالية متقدمة للغاية تضاهي تقارير أكبر شركات التدقيق العالمية (Deloitte & KPMG).</p>
+      <h2>💰 Financial Health & Cash Flow Intelligence</h2>
+      <p>Advanced financial auditing and forecasting comparable to tier-one global audit standards (Deloitte & KPMG).</p>
     </div>
-
-    <div class="grid-3" style="margin-bottom: 30px;">
+    <div class="grid-3" style="margin-bottom: 35px;">
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px;">التدفق النقدي الحر</p>
+        <p style="color: var(--text-muted); font-size: 14px;">Free Cash Flow</p>
         <h3 style="font-size: 28px; font-weight: 900; color: var(--accent-cyan);">$840,000</h3>
-        <span class="badge badge-success" style="margin-top: 10px;">مستقر وممتاز</span>
+        <span class="badge badge-success" style="margin-top: 10px;">Stable & Robust</span>
       </div>
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px;">معدل العائد على الاستثمار (ROI)</p>
+        <p style="color: var(--text-muted); font-size: 14px;">Return on Investment (ROI)</p>
         <h3 style="font-size: 28px; font-weight: 900; color: var(--accent-emerald);">28.4%</h3>
-        <span class="badge badge-success" style="margin-top: 10px;">أعلى من المستهدف</span>
+        <span class="badge badge-success" style="margin-top: 10px;">Exceeds Target</span>
       </div>
       <div class="glass-card">
-        <p style="color: var(--text-muted); font-size: 14px;">المصروفات التشغيلية المتوقعة</p>
+        <p style="color: var(--text-muted); font-size: 14px;">Projected Opex</p>
         <h3 style="font-size: 28px; font-weight: 900; color: var(--accent-amber);">$310,000</h3>
-        <span class="badge badge-warning" style="margin-top: 10px;">تحتاج ترشيد بنسبة 5%</span>
+        <span class="badge badge-warning" style="margin-top: 10px;">Optimization Suggested</span>
       </div>
     </div>
-
   </div>
-
+  <script>
+    fetch('header.html').then(res => res.text()).then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+      const cur = window.location.pathname.split("/").pop() || 'index.html';
+      document.querySelectorAll('.nav-link-item').forEach(l => {
+        if(l.getAttribute('data-page') === cur) l.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
