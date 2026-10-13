@@ -3,42 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | الصيانة والتشغيل التنبؤي</title>
+  <title>Smart Care | Predictive Maintenance</title>
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <nav class="smart-navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="logo-icon">🧠</div>
-      <h1>Smart Care</h1>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">الرئيسية (CEO)</a></li>
-      <li><a href="healthcare.html">القطاع الطبي</a></li>
-      <li><a href="risk-engine.html">محرك المخاطر والمحاكاة</a></li>
-      <li><a href="finance.html">المالية</a></li>
-      <li><a href="hr.html">الموارد البشرية</a></li>
-      <li><a href="logistics.html">اللوجستيات</a></li>
-      <li><a href="real-estate.html">العقارات</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="maintenance.html" class="active">الصيانة</a></li>
-    </ul>
-  </nav>
-
+  <div id="navbar-placeholder"></div>
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>⚙️ الصيانة والتشغيل (Predictive Maintenance)</h2>
-      <p>التنبؤ بأعطال المعدات قبل حدوثها وجدولة الصيانة الوقائية تلقائياً لمنع التوقف المفاجئ.</p>
+      <h2>⚙️ Predictive Maintenance & Operations</h2>
+      <p>Forecasting equipment failure before occurrence and scheduling automated preventative maintenance.</p>
     </div>
-
     <div class="glass-card">
-      <h3 style="color: var(--accent-emerald); margin-bottom: 15px;">حالة الأجهزة والمعدات الحساسة</h3>
+      <h3 style="color: var(--accent-emerald); margin-bottom: 15px;">Sensitive Equipment Health Status</h3>
       <p style="color: var(--text-muted); line-height: 1.7;">
-        جهاز الرنين المغناطيسي رقم 2 يتطلب صيانة وقائية خلال 5 أيام لتجنب أي توقف غير مخطط له. تم جدولة الفريق الفني تلقائياً.
+        MRI scanner unit #2 requires preventative calibration within 5 days to prevent unexpected downtime. Technical team scheduled automatically.
       </p>
     </div>
   </div>
-
+  <script>
+    fetch('header.html').then(res => res.text()).then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+      const cur = window.location.pathname.split("/").pop() || 'index.html';
+      document.querySelectorAll('.nav-link-item').forEach(l => {
+        if(l.getAttribute('data-page') === cur) l.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
