@@ -9,26 +9,22 @@
 </head>
 <body>
   <div id="navbar-placeholder"></div>
+
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>📦 Logistics & Supply Chain Simulation</h2>
-      <p>Tracking shipments, vendor reliability metrics, and marine/aerial delay simulation models.</p>
+      <h2 data-ar="📦 الشحن وسلاسل الإمداد (Logistics & Supply Chain)" data-en="📦 Logistics & Supply Chain Simulation">📦 الشحن وسلاسل الإمداد (Logistics & Supply Chain)</h2>
+      <p data-ar="تتبع الشحنات ومحاكاة التأخير البحري والجوي وتقييم أداء الموردين." data-en="Tracking shipments, vendor reliability, and delay simulation models.">تتبع الشحنات ومحاكاة التأخير البحري والجوي وتقييم أداء الموردين.</p>
     </div>
+
     <div class="glass-card">
-      <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">Regional Warehouse Shipment Status</h3>
-      <p style="color: var(--text-muted); line-height: 1.7;">
-        All active shipments operating on schedule except primary medical device container arriving via main port (predicted 3-day delay successfully mitigated by auto-rerouting).
+      <h3 style="color: var(--accent-cyan); margin-bottom: 15px;" data-ar="حالة شحنات المستودعات الإقليمية والموردين" data-en="Regional Warehouse Shipment Status">حالة شحنات المستودعات الإقليمية والموردين</h3>
+      <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 15px;" data-ar="جميع الشحنات تسير وفق الجدول الزمني عدا شحنة الأجهزة الطبية القادمة عبر الميناء الرئيسي (تم رصد تأخير متوقع وتم تفعيل مسار التحويل البديل آلياً)." data-en="All active shipments on schedule except primary medical device container (auto-rerouted due to port delay).">
+        جميع الشحنات تسير وفق الجدول الزمني عدا شحنة الأجهزة الطبية القادمة عبر الميناء الرئيسي (تم رصد تأخير متوقع وتم تفعيل مسار التحويل البديل آلياً).
       </p>
+      <span class="badge badge-success">⚡ كفاءة سلسلة الإمداد: 96.2%</span>
     </div>
   </div>
-  <script>
-    fetch('header.html').then(res => res.text()).then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      const cur = window.location.pathname.split("/").pop() || 'index.html';
-      document.querySelectorAll('.nav-link-item').forEach(l => {
-        if(l.getAttribute('data-page') === cur) l.classList.add('active');
-      });
-    });
-  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
