@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Inject Header
   const headerHTML = `
     <nav class="smart-navbar">
       <a href="index.html" class="nav-brand">
@@ -7,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <span class="brand-title">Smart Care</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html" class="nav-link" data-ar="الرئيسية (CEO)" data-en="CEO Dashboard">الرئيسية (CEO)</a></li>
-        <li><a href="healthcare.html" class="nav-link" data-ar="القطاع الطبي" data-en="Healthcare ERP">القطاع الطبي</a></li>
-        <li><a href="risk-engine.html" class="nav-link" data-ar="محرك المخاطر" data-en="Risk Engine">محرك المخاطر</a></li>
+        <li><a href="index.html" data-ar="الرئيسية (CEO)" data-en="CEO Dashboard">الرئيسية (CEO)</a></li>
+        <li><a href="healthcare.html" data-ar="القطاع الطبي" data-en="Healthcare ERP">القطاع الطبي</a></li>
+        <li><a href="risk-engine.html" data-ar="محرك المخاطر" data-en="Risk Engine">محرك المخاطر</a></li>
         <li class="dropdown">
           <a href="#" data-ar="القطاعات والأقسام ▾" data-en="Sectors ▾">القطاعات والأقسام ▾</a>
           <div class="dropdown-content">
@@ -21,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <a href="maintenance.html" data-ar="⚙️ الصيانة والتشغيل" data-en="⚙️ Predictive Maintenance">⚙️ الصيانة والتشغيل</a>
           </div>
         </li>
+        <li><a href="tech-core.html" data-ar="النوى البرمجية" data-en="Polyglot Cores">النوى البرمجية</a></li>
       </ul>
       <div class="nav-controls">
         <button class="control-btn" id="theme-toggle">🌓 الوضع الداكن</button>
@@ -29,21 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
     </nav>
   `;
   
-  const headerPlaceholder = document.getElementById('navbar-placeholder');
-  if(headerPlaceholder) headerPlaceholder.innerHTML = headerHTML;
+  const placeholder = document.getElementById('navbar-placeholder');
+  if(placeholder) placeholder.innerHTML = headerHTML;
 
-  // Theme Toggle
+  // Theme Logic
   const themeBtn = document.getElementById('theme-toggle');
-  const currentTheme = localStorage.getItem('theme') || 'dark';
-  if(currentTheme === 'light') {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  if(savedTheme === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
     if(themeBtn) themeBtn.textContent = '☀️ الوضع الفاتح';
   }
 
   if(themeBtn) {
     themeBtn.addEventListener('click', () => {
-      let th = document.documentElement.getAttribute('data-theme');
-      if(th === 'light') {
+      let current = document.documentElement.getAttribute('data-theme');
+      if(current === 'light') {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'dark');
         themeBtn.textContent = '🌓 الوضع الداكن';
@@ -55,11 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Language Toggle
+  // Language Logic
   const langBtn = document.getElementById('lang-toggle');
-  let currentLang = localStorage.getItem('lang') || 'ar';
-  
-  function setLanguage(lang) {
+  let savedLang = localStorage.getItem('lang') || 'ar';
+
+  function applyLanguage(lang) {
     document.querySelectorAll('[data-ar]').forEach(el => {
       el.textContent = el.getAttribute(`data-${lang}`);
     });
@@ -68,12 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if(langBtn) langBtn.textContent = lang === 'ar' ? '🌐 EN' : '🌐 AR';
   }
 
-  setLanguage(currentLang);
+  applyLanguage(savedLang);
 
   if(langBtn) {
     langBtn.addEventListener('click', () => {
-      currentLang = currentLang === 'ar' ? 'en' : 'ar';
-      setLanguage(currentLang);
+      savedLang = savedLang === 'ar' ? 'en' : 'ar';
+      applyLanguage(savedLang);
     });
   }
 });
