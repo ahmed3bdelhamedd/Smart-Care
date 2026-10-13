@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <img src="logo.jpg" alt="Logo" class="logo-img">
         <span class="brand-title">Smart Care</span>
       </a>
-      <ul class="nav-links">
+      <button class="menu-toggle" id="mobile-menu-btn">☰</button>
+      <ul class="nav-links" id="nav-links-container">
         <li><a href="index.html" data-ar="الرئيسية (CEO)" data-en="CEO Dashboard">الرئيسية (CEO)</a></li>
         <li><a href="healthcare.html" data-ar="القطاع الطبي" data-en="Healthcare ERP">القطاع الطبي</a></li>
         <li><a href="risk-engine.html" data-ar="محرك المخاطر" data-en="Risk Engine">محرك المخاطر</a></li>
@@ -23,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <li><a href="tech-core.html" data-ar="النوى البرمجية" data-en="Polyglot Cores">النوى البرمجية</a></li>
       </ul>
       <div class="nav-controls">
-        <button class="control-btn" id="theme-toggle">🌓 الوضع الداكن</button>
-        <button class="control-btn" id="lang-toggle">🌐 EN</button>
+        <button class="control-btn" id="theme-toggle">🌓</button>
+        <button class="control-btn" id="lang-toggle">EN</button>
       </div>
     </nav>
   `;
@@ -32,7 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const placeholder = document.getElementById('navbar-placeholder');
   if(placeholder) placeholder.innerHTML = headerHTML;
 
-  // Active Link Highlight
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const navContainer = document.getElementById('nav-links-container');
+  if(menuBtn && navContainer) {
+    menuBtn.addEventListener('click', () => {
+      navContainer.classList.toggle('active-mobile');
+    });
+  }
+
   const currentPath = window.location.pathname.split("/").pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(link => {
     if(link.getAttribute('href') === currentPath) {
@@ -40,12 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Theme Logic
   const themeBtn = document.getElementById('theme-toggle');
   const savedTheme = localStorage.getItem('theme') || 'dark';
   if(savedTheme === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
-    if(themeBtn) themeBtn.textContent = '☀️ الوضع الفاتح';
+    if(themeBtn) themeBtn.textContent = '☀️';
   }
 
   if(themeBtn) {
@@ -54,16 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if(current === 'light') {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'dark');
-        themeBtn.textContent = '🌓 الوضع الداكن';
+        themeBtn.textContent = '🌓';
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
-        themeBtn.textContent = '☀️ الوضع الفاتح';
+        themeBtn.textContent = '☀️';
       }
     });
   }
 
-  // Language Logic
   const langBtn = document.getElementById('lang-toggle');
   let savedLang = localStorage.getItem('lang') || 'ar';
 
@@ -73,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
     localStorage.setItem('lang', lang);
-    if(langBtn) langBtn.textContent = lang === 'ar' ? '🌐 EN' : '🌐 AR';
+    if(langBtn) langBtn.textContent = lang === 'ar' ? 'EN' : 'AR';
   }
 
   applyLanguage(savedLang);
