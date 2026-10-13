@@ -3,71 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | Smart Healthcare ERP</title>
+  <title>Smart Care | Healthcare ERP</title>
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
   <div id="navbar-placeholder"></div>
 
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>🏥 Smart Healthcare ERP & Dual Management</h2>
-      <p>Simultaneous dual-experience optimized for hospital executive administration and seamless patient care.</p>
+      <h2 data-ar="🏥 القطاع الطبي والمستشفيات (Smart Healthcare ERP)" data-en="🏥 Smart Healthcare & Dual Management">🏥 القطاع الطبي والمستشفيات (Smart Healthcare ERP)</h2>
+      <p data-ar="تجربة مزدوجة فريدة تخدم إدارة المستشفى والمريض في وقت واحد بذكاء اصطناعي فائق." data-en="Simultaneous dual-experience optimized for hospital executive administration and seamless patient care.">تجربة مزدوجة فريدة تخدم إدارة المستشفى والمريض في وقت واحد بذكاء اصطناعي فائق.</p>
     </div>
 
-    <div class="grid-2" style="margin-bottom: 35px;">
+    <div class="grid-2">
       <div class="glass-card">
-        <h3 style="color: var(--accent-cyan); margin-bottom: 20px; font-size: 20px;">🏢 AI Enterprise Management (Hospital Administration)</h3>
-        
-        <div style="margin-bottom: 25px;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-            <span>Occupancy & Emergency Peak Predictions</span>
-            <strong style="color: var(--accent-amber);">92% (Peak Expected @ 20:00)</strong>
-          </div>
-          <p style="font-size: 13px; color: var(--text-muted);">Historical machine-learning analytics forecasting patient influx to optimize medical staff allocation.</p>
-        </div>
-
-        <div style="margin-bottom: 20px;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-            <span>Surgical Cost & Pharmaceutical Inventory</span>
-            <strong style="color: var(--accent-emerald);">Zero Financial Waste</strong>
-          </div>
-          <p style="font-size: 13px; color: var(--text-muted);">Precise treatment cost calculation, profit-margin forecasting, and automated drug expiry tracking.</p>
-        </div>
+        <h3 style="color: var(--accent-cyan); margin-bottom: 15px;" data-ar="🏢 جانب إدارة المستشفى (AI Enterprise Management)" data-en="🏢 AI Enterprise Management (Hospital Admin)">🏢 جانب إدارة المستشفى (AI Enterprise Management)</h3>
+        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 15px;" data-ar="تحليل أوقات الذروة والتكدس في الطوارئ والعيادات بدقة للتنبؤ بالضغط وتوزيع الكوادر الطبية مبكراً." data-en="Predicting emergency peak hours and patient influx to optimize medical staff allocation.">تحليل أوقات الذروة والتكدس في الطوارئ والعيادات بدقة للتنبؤ بالضغط وتوزيع الكوادر الطبية مبكراً.</p>
+        <div style="height: 200px;"><canvas id="hospitalChart"></canvas></div>
       </div>
 
       <div class="glass-card">
-        <h3 style="color: var(--accent-purple); margin-bottom: 20px; font-size: 20px;">💙 Patient Experience & Care Architecture</h3>
-        
-        <div style="margin-bottom: 20px;">
-          <strong style="display: block; color: var(--text-main); margin-bottom: 5px;">Smart Treatment Cost Estimator:</strong>
-          <p style="font-size: 13px; color: var(--text-muted);">Real-time algorithmic estimation based on insurance coverage tier and room category with economic alternatives.</p>
-        </div>
-
-        <div style="margin-bottom: 20px;">
-          <strong style="display: block; color: var(--text-main); margin-bottom: 5px;">Live Waiting Time & Congestion Index:</strong>
-          <p style="font-size: 13px; color: var(--text-muted);">Live tracking of clinic queues and estimated waiting times directly accessible from mobile app.</p>
-        </div>
-
-        <div>
-          <strong style="display: block; color: var(--text-main); margin-bottom: 5px;">Smart Emergency Routing:</strong>
-          <p style="font-size: 13px; color: var(--text-muted);">Interactive GIS map detecting nearest hospital with verified available ICU beds for critical trauma cases.</p>
-        </div>
+        <h3 style="color: var(--accent-purple); margin-bottom: 15px;" data-ar="💙 جانب المريض والراحة (Patient Experience & Care)" data-en="💙 Patient Experience & Care Architecture">💙 جانب المريض والراحة (Patient Experience & Care)</h3>
+        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 15px;" data-ar="حساب التكلفة المتوقعة بدقة بناءً على تغطية التأمين، مؤشر الزحمة ووقت الانتظار الفعلي، والتوجيه الطارئ لأقرب سرير عناية شاغر." data-en="Real-time cost estimation, live waiting queues, and smart emergency routing to available ICU beds.">حساب التكلفة المتوقعة بدقة بناءً على تغطية التأمين، مؤشر الزحمة ووقت الانتظار الفعلي، والتوجيه الطارئ لأقرب سرير عناية شاغر.</p>
+        <span class="badge badge-success" data-ar="⚡ التوجيه الطارئ الذكي: مفعل" data-en="⚡ Smart Emergency Routing: Active">⚡ التوجيه الطارئ الذكي: مفعل</span>
       </div>
     </div>
   </div>
 
+  <script src="script.js"></script>
   <script>
-    fetch('header.html').then(res => res.text()).then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      const cur = window.location.pathname.split("/").pop() || 'index.html';
-      document.querySelectorAll('.nav-link-item').forEach(l => {
-        if(l.getAttribute('data-page') === cur) l.classList.add('active');
+    setTimeout(() => {
+      const ctx = document.getElementById('hospitalChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'],
+          datasets: [{
+            label: 'معدل ضغط الطوارئ والإشغال (%)',
+            data: [65, 85, 92, 78, 88, 95, 70],
+            backgroundColor: '#8b5cf6',
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: '#94a3b8' } } },
+          scales: {
+            x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+            y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+          }
+        }
       });
-    });
+    }, 500);
   </script>
 </body>
 </html>
