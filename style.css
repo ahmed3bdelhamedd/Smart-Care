@@ -2,7 +2,6 @@
 
 :root {
   --bg-primary: #030712;
-  --bg-secondary: #0b1329;
   --bg-card: rgba(15, 23, 42, 0.85);
   --border-color: rgba(56, 189, 248, 0.2);
   --border-glow: rgba(56, 189, 248, 0.5);
@@ -14,15 +13,14 @@
   --accent-amber: #f59e0b;
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-card: rgba(255, 255, 255, 0.9);
-  --border-color: rgba(56, 189, 248, 0.3);
-  --border-glow: rgba(37, 99, 235, 0.4);
+  --bg-primary: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --border-color: rgba(56, 189, 248, 0.4);
+  --border-glow: rgba(37, 99, 235, 0.5);
   --text-main: #0f172a;
   --text-muted: #475569;
 }
@@ -38,9 +36,12 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-main);
   direction: rtl;
-  overflow-x: hidden;
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[dir="ltr"] body {
+  direction: ltr;
 }
 
 /* Scrollbar */
@@ -66,6 +67,10 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
+[dir="ltr"] .smart-navbar {
+  flex-direction: row-reverse;
+}
+
 .nav-brand {
   display: flex;
   align-items: center;
@@ -80,7 +85,6 @@ body {
   border-radius: 12px;
   object-fit: cover;
   border: 1px solid var(--border-color);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
 }
 
 .nav-brand h1 {
@@ -130,11 +134,11 @@ body {
   padding: 10px;
   z-index: 1001;
 }
+[dir="ltr"] .dropdown-content { right: auto; left: 0; }
 .dropdown:hover .dropdown-content { display: block; }
 .dropdown-content a { display: block; padding: 10px 14px; color: var(--text-muted); border-radius: 8px; margin-bottom: 4px; }
 .dropdown-content a:hover { background: rgba(56, 189, 248, 0.2); color: var(--accent-cyan); }
 
-/* Controls (Theme & Lang) */
 .nav-controls {
   display: flex;
   align-items: center;
@@ -153,14 +157,13 @@ body {
 }
 .control-btn:hover { background: var(--accent-cyan); color: #fff; }
 
-/* Main Layout */
+/* Main Layout & Cards */
 .page-container {
   max-width: 1440px;
   margin: 120px auto 60px auto;
   padding: 0 30px;
 }
 
-/* Cards */
 .glass-card {
   background: var(--bg-card);
   backdrop-filter: blur(16px);
@@ -171,10 +174,7 @@ body {
   transition: var(--transition-smooth);
   margin-bottom: 25px;
 }
-.glass-card:hover {
-  border-color: var(--border-glow);
-  transform: translateY(-3px);
-}
+.glass-card:hover { border-color: var(--border-glow); transform: translateY(-3px); }
 
 .section-header { margin-bottom: 30px; }
 .section-header h2 { font-size: 26px; font-weight: 900; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
