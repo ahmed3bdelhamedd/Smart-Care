@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Core Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Chart.js CDN for interactive charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter / Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex transition-colors duration-300">
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed inset-y-0 right-0 z-50 w-64 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 flex flex-col transition-transform duration-300 transform translate-x-full lg:translate-x-0">
+        <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-brain text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-tight">Smart Core</h1>
+                    <span class="text-xs text-emerald-500 font-medium flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> النظام متصل
+                    </span>
+                </div>
+            </div>
+            <button onclick="toggleSidebar()" class="lg:hidden text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto">
+            <a href="#overview" onclick="switchTab('overview')" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 transition-all">
+                <i class="fa-solid fa-chart-pie w-5 text-center"></i> نظرة عامة
+            </a>
+            <a href="#analytics" onclick="switchTab('analytics')" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">
+                <i class="fa-solid fa-chart-line w-5 text-center"></i> التحليلات المتقدمة
+            </a>
+            <a href="#tasks" onclick="switchTab('tasks')" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">
+                <i class="fa-solid fa-list-check w-5 text-center"></i> إدارة المهام
+            </a>
+            <a href="#data" onclick="switchTab('data')" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">
+                <i class="fa-solid fa-database w-5 text-center"></i> إدارة البيانات
+            </a>
+            <a href="#settings" onclick="switchTab('settings')" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all">
+                <i class="fa-solid fa-gear w-5 text-center"></i> الإعدادات والنظام
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+            <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-xl flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-purple-500 to-brand-500 flex items-center justify-center text-white font-bold text-sm">
+                    أح
+                </div>
+                <div class="overflow-hidden">
+                    <h4 class="text-sm font-bold truncate">أحمد العتيبي</h4>
+                    <p class="text-xs text-slate-500 truncate">مدير النظام الذكي</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 flex flex-col min-w-0 lg:mr-64">
+        
+        <!-- Top Navigation Header -->
+        <header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 flex items-center justify-between sticky top-0 z-40">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleSidebar()" class="lg:hidden text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <div class="relative hidden sm:block">
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" placeholder="بحث في السجلات أو البيانات..." class="bg-slate-100 dark:bg-slate-800 border-none rounded-xl pr-10 pl-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 w-64 transition-all">
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <!-- Notifications dropdown trigger -->
+                <button onclick="toggleNotifications()" class="relative p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                    <i class="fa-regular fa-bell text-lg"></i>
+                    <span class="absolute top-1.5 left-1.5 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-white dark:ring-slate-900"></span>
+                </button>
+
+                <!-- Dark/Light Mode Toggle -->
+                <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                    <i id="theme-icon" class="fa-solid fa-sun dark:fa-moon text-lg"></i>
+                </button>
+
+                <!-- Quick Action Button -->
+                <button onclick="openNewTaskModal()" class="hidden sm:flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg shadow-brand-500/20 transition-all">
+                    <i class="fa-solid fa-plus"></i> مهمة جديدة
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Body Tabs -->
+        <main class="flex-1 p-6 overflow-y-auto">
+            
+            <!-- TAB 1: OVERVIEW -->
+            <div id="tab-overview" class="tab-content space-y-6">
+                <!-- Welcome Banner -->
+                <div class="bg-gradient-to-r from-brand-600 to-indigo-700 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="absolute -left-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="space-y-2 z-10 text-right">
+                        <h2 class="text-2xl font-bold">مرحباً بك مجدداً، أحمد 👋</h2>
+                        <p class="text-brand-100 text-sm max-w-xl">نظام Smart Core يعمل بكفاءة تامة اليوم. تم إنجاز 84% من الأهداف التشغيلية بنجاح مع استقرار كامل في خوادم البيانات.</p>
+                    </div>
+                    <div class="flex gap-3 z-10">
+                        <button onclick="refreshData()" class="bg-white/15 hover:bg-white/25 px-4 py-2.5 rounded-xl text-sm font-medium backdrop-blur-md transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-right" id="refresh-icon"></i> تحديث البيانات
+                        </button>
+                        <button onclick="switchTab('analytics')" class="bg-white text-brand-700 hover:bg-brand-50 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all">
+                            التقارير المفصلة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Statistics Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">إجمالي الطلبات النشطة</p>
+                            <h3 class="text-2xl font-bold mt-2">1,482</h3>
+                            <span class="text-xs text-emerald-500 font-semibold flex items-center gap-1 mt-1">
+                                <i class="fa-solid fa-arrow-trend-up"></i> +12.5% عن الأسبوع الماضي
+                            </span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">معدل استهلاك المعالج</p>
+                            <h3 class="text-2xl font-bold mt-2">38.4%</h3>
+                            <span class="text-xs text-emerald-500 font-semibold flex items-center gap-1 mt-1">
+                                <i class="fa-solid fa-circle-check"></i> ضمن النطاق الآمن
+                            </span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">المهام المكتملة</p>
+                            <h3 class="text-2xl font-bold mt-2">128 / 142</h3>
+                            <span class="text-xs text-brand-600 dark:text-brand-400 font-semibold flex items-center gap-1 mt-1">
+                                <i class="fa-solid fa-list-check"></i> 90% نسبة الإنجاز
+                            </span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-square-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">تنبيهات النظام</p>
+                            <h3 class="text-2xl font-bold mt-2">2 تنبيهات</h3>
+                            <span class="text-xs text-amber-500 font-semibold flex items-center gap-1 mt-1">
+                                <i class="fa-solid fa-triangle-exclamation"></i> تتطلب مراجعة بسيطة
+                            </span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">معدل الأداء وحركة المرور الأسبوعية</h3>
+                            <select class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-xs py-1.5 px-3 focus:outline-none">
+                                <option>آخر 7 أيام</option>
+                                <option>آخر 30 يوم</option>
+                            </select>
+                        </div>
+                        <div class="h-72 relative">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg mb-4">توزيع مصادر البيانات</h3>
+                            <div class="h-56 relative flex items-center justify-center">
+                                <canvas id="sourcesChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 pt-4 border-t border-slate-100 dark:border-slate-800 text-center text-xs">
+                            <div>
+                                <span class="block text-slate-400">قاعدة أ</span>
+                                <span class="font-bold text-sm">45%</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-400">قاعدة ب</span>
+                                <span class="font-bold text-sm">35%</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-400">أخرى</span>
+                                <span class="font-bold text-sm">20%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: ANALYTICS -->
+            <div id="tab-analytics" class="tab-content hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold">التحليلات المتقدمة والتقارير</h2>
+                        <p class="text-xs text-slate-500 mt-1">تحليل مفصل لكفاءة النظام وسرعة استجابة الخوادم.</p>
+                    </div>
+                    <button onclick="showToast('تم تصدير تقرير التحليلات بنجاح')" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-download"></i> تصدير التقرير
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h3 class="font-bold text-base mb-4">سرعة الاستجابة اللحظية (ms)</h3>
+                        <div class="h-72">
+                            <canvas id="latencyChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h3 class="font-bold text-base mb-4">استقرار العقد والاتصالات (%)</h3>
+                        <div class="h-72">
+                            <canvas id="nodesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: TASKS -->
+            <div id="tab-tasks" class="tab-content hidden space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold">إدارة المهام والعمليات الذكية</h2>
+                        <p class="text-xs text-slate-500 mt-1">تابع المهام الجارية، المؤجلة، والمكتملة للنظام.</p>
+                    </div>
+                    <button onclick="openNewTaskModal()" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-brand-500/20 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> إضافة مهمة جديدة
+                    </button>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4 flex-wrap">
+                        <div class="flex items-center gap-2">
+                            <button onclick="filterTasks('all')" class="task-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 transition-all">الكل</button>
+                            <button onclick="filterTasks('pending')" class="task-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">قيد التنفيذ</button>
+                            <button onclick="filterTasks('completed')" class="task-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">المكتملة</button>
+                        </div>
+                        <input type="text" id="taskSearch" oninput="searchTasks()" placeholder="بحث في المهام..." class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-3 py-1.5 text-xs focus:outline-none">
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-right border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs uppercase tracking-wider">
+                                    <th class="p-4">عنوان المهمة</th>
+                                    <th class="p-4">المسؤول</th>
+                                    <th class="p-4">الأولوية</th>
+                                    <th class="p-4">الحالة</th>
+                                    <th class="p-4">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tasksTableBody" class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+                                <!-- Dynamic rows populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: DATA MANAGEMENT -->
+            <div id="tab-data" class="tab-content hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold">إدارة البيانات والمحفوظات</h2>
+                        <p class="text-xs text-slate-500 mt-1">التحكم في قواعد البيانات المحلية، النسخ الاحتياطي، والسجلات.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="backupData()" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> إنشاء نسخة احتياطية
+                        </button>
+                        <button onclick="clearData()" class="bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 hover:bg-rose-100 px-4 py-2 rounded-xl text-xs font-semibold transition-all">
+                            إعادة ضبط البيانات
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                        <h3 class="font-bold text-base">إحصائيات التخزين</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-slate-500">المساحة المستخدمة</span>
+                                    <span class="font-bold">64.2 GB / 250 GB</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="bg-brand-600 h-full rounded-full w-1/4"></div>
+                                </div>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 dark:border-slate-800 text-xs space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">قواعد البيانات SQL</span>
+                                    <span class="font-semibold">24.5 GB</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">الملفات والمرفقات</span>
+                                    <span class="font-semibold">32.1 GB</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">ملفات السجل (Logs)</span>
+                                    <span class="font-semibold">7.6 GB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                        <h3 class="font-bold text-base">سجل الأحداث والنشاطات الأخيرة</h3>
+                        <div class="space-y-3 text-xs" id="activityLogs">
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-slate-800 dark:text-slate-200">تم تحديث قاعدة بيانات النظام بنجاح</p>
+                                        <span class="text-slate-400">منذ 15 دقيقة بواسطة النظام الآلي</span>
+                                    </div>
+                                </div>
+                                <span class="text-emerald-500 font-semibold">مكتمل</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-brand-50 dark:bg-brand-900/30 text-brand-600 flex items-center justify-center">
+                                        <i class="fa-solid fa-user-shield"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-slate-800 dark:text-slate-200">تسجيل دخول ناجح للوحة التحكم</p>
+                                        <span class="text-slate-400">منذ ساعة بواسطة أحمد العتيبي</span>
+                                    </div>
+                                </div>
+                                <span class="text-brand-500 font-semibold">آمن</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: SETTINGS -->
+            <div id="tab-settings" class="tab-content hidden space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold">إعدادات النظام والتفضيلات</h2>
+                    <p class="text-xs text-slate-500 mt-1">تخصيص واجهة المستخدم وإعدادات الأمان والتنبيهات.</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm max-w-2xl space-y-6">
+                    <div class="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800">
+                        <div>
+                            <h4 class="font-bold text-sm">وضع المظهر الداكن</h4>
+                            <p class="text-xs text-slate-500">التبديل بين الوضع الليلي والنهاري للواجهة</p>
+                        </div>
+                        <button onclick="toggleTheme()" class="w-12 h-6 bg-brand-600 rounded-full relative transition-colors p-1 flex items-center dark:justify-end">
+                            <div class="w-4 h-4 bg-white rounded-full shadow-md"></div>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800">
+                        <div>
+                            <h4 class="font-bold text-sm">التنبيهات الفورية (Push Notifications)</h4>
+                            <p class="text-xs text-slate-500">تلقي إشعارات فورية عند حدوث تغيرات هامة في الخوادم</p>
+                        </div>
+                        <input type="checkbox" checked class="w-4 h-4 text-brand-600 rounded accent-brand-600">
+                    </div>
+
+                    <div class="flex items-center justify-between py-3">
+                        <div>
+                            <h4 class="font-bold text-sm">المزامنة التلقائية للبيانات</h4>
+                            <p class="text-xs text-slate-500">تحديث مؤشرات الأداء والرسوم البيانية كل 30 ثانية</p>
+                        </div>
+                        <input type="checkbox" checked class="w-4 h-4 text-brand-600 rounded accent-brand-600">
+                    </div>
+
+                    <div class="pt-4 flex justify-end">
+                        <button onclick="showToast('تم حفظ التغييرات بنجاح')" class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2.5 rounded-xl text-sm font-semibold transition-all">
+                            حفظ التعديلات
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- New Task Modal -->
+    <div id="taskModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 space-y-4 border border-slate-200 dark:border-slate-800 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <h3 class="font-bold text-lg">إضافة مهمة جديدة للنظام</h3>
+                <button onclick="closeNewTaskModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <form id="newTaskForm" onsubmit="handleAddTask(event)" class="space-y-4 text-sm">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">عنوان المهمة</label>
+                    <input type="text" id="taskTitle" required placeholder="أدخل عنوان المهمة..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">المسؤول</label>
+                    <input type="text" id="taskAssignee" required placeholder="اسم المسؤول أو المبرمج..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">الأولوية</label>
+                    <select id="taskPriority" class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option value="عالية">عالية</option>
+                        <option value="متوسطة" selected>متوسطة</option>
+                        <option value="منخفضة">منخفضة</option>
+                    </select>
+                </div>
+                <div class="flex justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+                    <button type="button" onclick="closeNewTaskModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">إلغاء</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-brand-500/20 transition-all">حفظ المهمة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Message Box -->
+    <div id="toast" class="fixed bottom-6 left-6 z-50 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-5 py-3 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 font-semibold text-sm flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600"></i>
+        <span id="toastMessage">تم العملية بنجاح</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // State Management
+        let tasks = [
+            { id: 1, title: 'تحديث بنية الأمان وقواعد الـ Firewall', assignee: 'أحمد العتيبي', priority: 'عالية', status: 'completed' },
+            { id: 2, title: 'مراجعة تقارير الاستهلاك الشهري', assignee: 'سارة خالد', priority: 'متوسطة', status: 'pending' },
+            { id: 3, title: 'تحسين خوارزميات الاستعلام لقاعدة البيانات', assignee: 'محمد علي', priority: 'عالية', status: 'pending' },
+            { id: 4, title: 'تصدير النسخة الاحتياطية للسحاب', assignee: 'النظام الآلي', priority: 'منخفضة', status: 'completed' }
+        ];
+
+        let currentFilter = 'all';
+
+        // Initialize Charts on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            renderTasks();
+        });
+
+        // Theme Toggle Handler
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            showToast(isDark ? 'تم تفعيل الوضع الداكن' : 'تم تفعيل الوضع الفاتح');
+        }
+
+        // Sidebar Responsive Toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('translate-x-full');
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('bg-brand-50', 'dark:bg-brand-900/40', 'text-brand-600', 'dark:text-brand-400');
+                el.classList.add('text-slate-600', 'dark:text-slate-400', 'hover:bg-slate-100', 'dark:hover:bg-slate-800/60');
+            });
+
+            // Find clicked nav item and highlight
+            const clicked = event ? event.currentTarget : document.querySelector(`[href="#${tabId}"]`);
+            if (clicked) {
+                clicked.classList.remove('text-slate-600', 'dark:text-slate-400', 'hover:bg-slate-100', 'dark:hover:bg-slate-800/60');
+                clicked.classList.add('bg-brand-50', 'dark:bg-brand-900/40', 'text-brand-600', 'dark:text-brand-400');
+            }
+
+            if(window.innerWidth < 1024) {
+                toggleSidebar();
+            }
+        }
+
+        // Charts Configuration
+        let perfChart, sourcesChart, latencyChart, nodesChart;
+
+        function initCharts() {
+            // Performance Chart
+            const ctx1 = document.getElementById('performanceChart').getContext('2d');
+            perfChart = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'],
+                    datasets: [{
+                        label: 'معدل الأداء (%)',
+                        data: [82, 88, 85, 92, 89, 94, 96],
+                        borderColor: '#6366f1',
+                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: 'rgba(200, 200, 200, 0.1)' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Sources Doughnut Chart
+            const ctx2 = document.getElementById('sourcesChart').getContext('2d');
+            sourcesChart = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['قاعدة أ', 'قاعدة ب', 'أخرى'],
+                    datasets: [{
+                        data: [45, 35, 20],
+                        backgroundColor: ['#6366f1', '#a855f7', '#38bdf8'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    cutout: '75%'
+                }
+            });
+
+            // Latency Chart
+            const ctx3 = document.getElementById('latencyChart').getContext('2d');
+            latencyChart = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: ['العقدة 1', 'العقدة 2', 'العقدة 3', 'العقدة 4', 'العقدة 5'],
+                    datasets: [{
+                        label: 'الاستجابة (ms)',
+                        data: [24, 18, 32, 21, 15],
+                        backgroundColor: '#4f46e5',
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Nodes Stability Chart
+            const ctx4 = document.getElementById('nodesChart').getContext('2d');
+            nodesChart = new Chart(ctx4, {
+                type: 'line',
+                data: {
+                    labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+                    datasets: [{
+                        label: 'نسبة الاستقرار (%)',
+                        data: [98.5, 99.1, 98.9, 99.5, 99.8, 99.9],
+                        borderColor: '#10b981',
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // Render Tasks Table
+        function renderTasks() {
+            const tbody = document.getElementById('tasksTableBody');
+            tbody.innerHTML = '';
+
+            let filtered = tasks;
+            if(currentFilter !== 'all') {
+                filtered = tasks.filter(t => t.status === currentFilter);
+            }
+
+            if(filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center p-6 text-slate-400">لا توجد مهام مطابقة للفلتر الحالي</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(task => {
+                const priorityColor = task.priority === 'عالية' ? 'bg-rose-50 text-rose-600 dark:bg-rose-900/30' : task.priority === 'متوسطة' ? 'bg-amber-50 text-amber-600 dark:bg-amber-900/30' : 'bg-blue-50 text-blue-600 dark:bg-blue-900/30';
+                const statusBadge = task.status === 'completed' ? '<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30">مكتملة</span>' : '<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-600 dark:bg-amber-900/30">قيد التنفيذ</span>';
+
+                const row = `
+                    <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-all">
+                        <td class="p-4 font-semibold">${task.title}</td>
+                        <td class="p-4 text-slate-500">${task.assignee}</td>
+                        <td class="p-4"><span class="px-2 py-0.5 rounded-lg text-xs font-bold ${priorityColor}">${task.priority}</span></td>
+                        <td class="p-4">${statusBadge}</td>
+                        <td class="p-4">
+                            <button onclick="toggleTaskStatus(${task.id})" class="text-xs font-semibold text-brand-600 hover:text-brand-700 underline ml-3">تغيير الحالة</button>
+                            <button onclick="deleteTask(${task.id})" class="text-xs font-semibold text-rose-500 hover:text-rose-600">حذف</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function filterTasks(status) {
+            currentFilter = status;
+            document.querySelectorAll('.task-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-50', 'dark:bg-brand-900/40', 'text-brand-600', 'dark:text-brand-400');
+                btn.classList.add('text-slate-600', 'dark:text-slate-400');
+            });
+            event.currentTarget.classList.add('bg-brand-50', 'dark:bg-brand-900/40', 'text-brand-600', 'dark:text-brand-400');
+            renderTasks();
+        }
+
+        function searchTasks() {
+            const query = document.getElementById('taskSearch').value.toLowerCase();
+            const tbody = document.getElementById('tasksTableBody');
+            const filtered = tasks.filter(t => t.title.toLowerCase().includes(query) || t.assignee.toLowerCase().includes(query));
+            
+            tbody.innerHTML = '';
+            filtered.forEach(task => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-all">
+                        <td class="p-4 font-semibold">${task.title}</td>
+                        <td class="p-4 text-slate-500">${task.assignee}</td>
+                        <td class="p-4">${task.priority}</td>
+                        <td class="p-4">${task.status}</td>
+                        <td class="p-4"><button onclick="deleteTask(${task.id})" class="text-xs text-rose-500">حذف</button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        function toggleTaskStatus(id) {
+            const task = tasks.find(t => t.id === id);
+            if(task) {
+                task.status = task.status === 'completed' ? 'pending' : 'completed';
+                renderTasks();
+                showToast('تم تحديث حالة المهمة');
+            }
+        }
+
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            renderTasks();
+            showToast('تم حذف المهمة بنجاح');
+        }
+
+        function openNewTaskModal() {
+            document.getElementById('taskModal').classList.remove('hidden');
+            document.getElementById('taskModal').classList.add('flex');
+        }
+
+        function closeNewTaskModal() {
+            document.getElementById('taskModal').classList.remove('flex');
+            document.getElementById('taskModal').classList.add('hidden');
+            document.getElementById('newTaskForm').reset();
+        }
+
+        function handleAddTask(e) {
+            e.preventDefault();
+            const title = document.getElementById('taskTitle').value;
+            const assignee = document.getElementById('taskAssignee').value;
+            const priority = document.getElementById('taskPriority').value;
+
+            tasks.unshift({
+                id: Date.now(),
+                title,
+                assignee,
+                priority,
+                status: 'pending'
+            });
+
+            closeNewTaskModal();
+            renderTasks();
+            showToast('تمت إضافة المهمة بنجاح');
+        }
+
+        // Quick Actions & Simulation
+        function refreshData() {
+            const icon = document.getElementById('refresh-icon');
+            icon.classList.add('animate-spin');
+            setTimeout(() => {
+                icon.classList.remove('animate-spin');
+                showToast('تم تحديث جميع مؤشرات النظام بنجاح');
+            }, 1000);
+        }
+
+        function backupData() {
+            showToast('جاري ضغط وإنشاء النسخة الاحتياطية للسحاب...');
+            setTimeout(() => {
+                showToast('تم حفظ النسخة الاحتياطية بنجاح (24.8 MB)');
+            }, 2000);
+        }
+
+        function clearData() {
+            if(confirm('هل أنت متأكد من إعادة ضبط السجلات المؤقتة؟')) {
+                showToast('تمت إعادة ضبط البيانات بنجاح');
+            }
+        }
+
+        function toggleNotifications() {
+            showToast('لا توجد إشعارات جديدة غير مقروءة');
+        }
+
+        // Toast Notification Trigger
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
