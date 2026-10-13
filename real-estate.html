@@ -3,32 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | Education & Training AI</title>
+  <title>Smart Care | Real Estate & Assets</title>
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="navbar-placeholder"></div>
+
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>🎓 Education & Training Intelligence</h2>
-      <p>Predicting trainee/student friction points and customizing training modules based on performance analytics.</p>
+      <h2>🏢 إدارة العقارات والأصول (Real Estate & Assets)</h2>
+      <p>إدارة المقار والأصول الطبية، حساب عوائد الإيجار، وتتبع جدولة الصيانة الدورية.</p>
     </div>
+
     <div class="glass-card">
-      <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">Training Program Analytics</h3>
-      <p style="color: var(--text-muted); line-height: 1.7;">
-        Customer service division flagged with 89% correlation requirement for supplementary stress-management and emergency communication training.
+      <h3 style="color: var(--accent-purple); margin-bottom: 15px;">معدل إشغال الأصول والعوائد الاستثمارية</h3>
+      <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 15px;">
+        نسبة الإشغال الإجمالية للمقار والعيادات تبلغ 91% مع توقعات بزيادة العوائد بنسبة 8% خلال النصف القادم وفقاً لتحليلات الذكاء الاصطناعي العقاري.
       </p>
+      <span class="badge badge-success">📈 العائد العقاري المتوقع: +8%</span>
     </div>
   </div>
-  <script>
-    fetch('header.html').then(res => res.text()).then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      const cur = window.location.pathname.split("/").pop() || 'index.html';
-      document.querySelectorAll('.nav-link-item').forEach(l => {
-        if(l.getAttribute('data-page') === cur) l.classList.add('active');
-      });
-    });
-  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
