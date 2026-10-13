@@ -3,44 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Care | HR & Talent Intelligence</title>
+  <title>Smart Care | Human Resources & Attrition</title>
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="navbar-placeholder"></div>
+
   <div class="page-container animate-fade">
     <div class="section-header">
-      <h2>👥 Human Resources & Candidate Ranking Engine</h2>
-      <p>Automated candidate filtering, ranking, and machine-learning employee attrition prediction.</p>
+      <h2 data-ar="👥 الموارد البشرية والترشيح الذكي (HR & Attrition AI)" data-en="👥 Human Resources & Talent Intelligence">👥 الموارد البشرية والترشيح الذكي (HR & Attrition AI)</h2>
+      <p data-ar="تصفية وترتيب المتقدمين آلياً والتنبؤ بمعدلات استقالة الموظفين الرئيسيين." data-en="Automated candidate filtering and machine-learning employee attrition prediction.">تصفية وترتيب المتقدمين آلياً والتنبؤ بمعدلات استقالة الموظفين الرئيسيين.</p>
     </div>
+
     <div class="grid-2">
       <div class="glass-card">
-        <h3 style="margin-bottom: 15px; color: var(--accent-cyan);">Automated Candidate Ranking</h3>
-        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
-          Parses incoming CVs, matches skillset vectors with job requirements, and ranks applicants with high precision.
-        </p>
-        <div style="background: rgba(3, 7, 18, 0.6); padding: 15px; border-radius: 10px;">
-          <strong>Top Matched Candidate:</strong> Ahmed Abdelhamed (98.4% Match Index)
+        <h3 style="margin-bottom: 15px; color: var(--accent-cyan);" data-ar="الترشيح والتصفية التلقائية (Candidate Ranking)" data-en="Automated Candidate Ranking">الترشيح والتصفية التلقائية (Candidate Ranking)</h3>
+        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;" data-ar="تحليل السير الذاتية ومطابقة المهارات مع متطلبات الشاغر الوظيفي بدقة متناهية لتقليص زمن التوظيف بنسبة 70%." data-en="Parsing CVs and matching skill sets with job specifications to reduce hiring time by 70%.">تحليل السير الذاتية ومطابقة المهارات مع متطلبات الشاغر الوظيفي بدقة متناهية لتقليص زمن التوظيف بنسبة 70%.</p>
+        <div style="background: rgba(3, 7, 18, 0.6); padding: 15px; border-radius: 10px; border-right: 4px solid var(--accent-cyan);">
+          <strong>أعلى مرشح مطابق:</strong> أحمد عبدالحامد (نسبة مطابقة 98.4%)
         </div>
       </div>
+
       <div class="glass-card">
-        <h3 style="margin-bottom: 15px; color: var(--accent-rose);">Attrition Risk Prediction</h3>
-        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
-          Analyzes performance metrics, working hours, and engagement indices to forecast key personnel departure risk.
-        </p>
-        <span class="badge badge-warning">Warning: 2 R&D engineers exhibit high flight risk (Action: Incentive review recommended)</span>
+        <h3 style="margin-bottom: 15px; color: var(--accent-rose);" data-ar="التنبؤ بالاستقالات (Attrition Prediction)" data-en="Attrition Risk Prediction">التنبؤ بالاستقالات (Attrition Prediction)</h3>
+        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;" data-ar="تحليل مؤشرات الأداء، عدد ساعات العمل، والرضا الوظيفي للتنبؤ باحتمالية مغادرة الكفاءات الرئيسية." data-en="Analyzing performance, work hours, and engagement indices to forecast key personnel departure risk.">تحليل مؤشرات الأداء، عدد ساعات العمل، والرضا الوظيفي للتنبؤ باحتمالية مغادرة الكفاءات الرئيسية.</p>
+        <span class="badge badge-warning">تنبيه: 2 موظفين في قسم التطوير لديهم مؤشر مغادرة مرتفع (مقترح: تعديل الحوافز)</span>
       </div>
     </div>
   </div>
-  <script>
-    fetch('header.html').then(res => res.text()).then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      const cur = window.location.pathname.split("/").pop() || 'index.html';
-      document.querySelectorAll('.nav-link-item').forEach(l => {
-        if(l.getAttribute('data-page') === cur) l.classList.add('active');
-      });
-    });
-  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
